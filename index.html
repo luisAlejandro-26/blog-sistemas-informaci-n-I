@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  .glosario-container { font-family: 'Segoe UI', sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+  .glosario-buscador { width: 100%; padding: 12px; margin-bottom: 20px; border: 2px solid #3b82f6; border-radius: 6px; font-size: 16px; }
+  .glosario-abc { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 25px; justify-content: center; }
+  .abc-btn { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e3a8a; padding: 6px 12px; border-radius: 4px; cursor: pointer; text-decoration: none; font-weight: bold; }
+  .abc-btn:hover { background: #3b82f6; color: white; }
+  .grupo-letra { margin-top: 30px; border-top: 2px solid #e2e8f0; padding-top: 10px; }
+  .letra-titulo { font-size: 24px; color: #1e3a8a; margin-bottom: 15px; }
+  .glosario-lista { list-style: none; padding: 0; }
+  .glosario-item { background: white; border: 1px solid #e2e8f0; padding: 15px; margin-bottom: 10px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+  .termino-nombre { font-size: 18px; color: #2563eb; margin: 0 0 5px 0; font-weight: bold; }
+  .termino-def { color: #475569; margin: 0; font-size: 15px; }
+</style>
+</head>
+<body>
+
+<div class="glosario-container">
+  
+  <input type="text" id="inputBuscar" class="glosario-buscador" onkeyup="buscarTermino()" placeholder="Buscar término en el glosario...">
+
+  <div class="glosario-abc">
+    <a href="#letra-D" class="abc-btn">D</a>
+    <a href="#letra-E" class="abc-btn">E</a>
+    <a href="#letra-M" class="abc-btn">M</a>
+    <a href="#letra-T" class="abc-btn">T</a>
+    </div>
+
+  <div id="contenedorTerminos">
+    
+    <div class="grupo-letra" id="letra-D">
+      <div class="letra-titulo">D</div>
+      <ul class="glosario-lista">
+        <li class="glosario-item">
+          <h3 class="termino-nombre">DSS (Decision Support Systems)</h3>
+          <p class="termino-def">Sistemas interactivos basados en computadora que ayudan a los tomadores de decisiones a utilizar datos y modelos para resolver problemas no estructurados.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="grupo-letra" id="letra-E">
+      <div class="letra-titulo">E</div>
+      <ul class="glosario-lista">
+        <li class="glosario-item">
+          <h3 class="termino-nombre">EIS (Executive Information Systems)</h3>
+          <p class="termino-def">Sistema de información destinado a la alta dirección que facilita el acceso a la información interna y externa, crucial para los objetivos estratégicos de la organización.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="grupo-letra" id="letra-M">
+      <div class="letra-titulo">M</div>
+      <ul class="glosario-xaxis">
+        <li class="glosario-item">
+          <h3 class="termino-nombre">MIS (Management Information Systems)</h3>
+          <p class="termino-def">Sistemas que proporcionan informes periódicos y estructurados sobre el rendimiento de las operaciones de nivel medio de la empresa.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="grupo-letra" id="letra-T">
+      <div class="letra-titulo">T</div>
+      <ul class="glosario-lista">
+        <li class="glosario-item">
+          <h3 class="termino-nombre">TPS (Transaction Processing Systems)</h3>
+          <p class="termino-def">Sistemas informáticos básicos que administran y registran las transacciones diarias y rutinarias necesarias para la marcha del negocio.</p>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function buscarTermino() {
+  var input = document.getElementById('inputBuscar');
+  var filter = input.value.toUpperCase();
+  var items = document.getElementsByClassName('glosario-item');
+  var grupos = document.getElementsByClassName('grupo-letra');
+
+  // Filtrar los items individuales
+  for (var i = 0; i < items.length; i++) {
+    var nombre = items[i].getElementsByClassName('termino-nombre')[0];
+    var definicion = items[i].getElementsByClassName('termino-def')[0];
+    
+    if (nombre || definicion) {
+      var txtNombre = nombre.textContent || nombre.innerText;
+      var txtDef = definicion.textContent || definicion.innerText;
+      
+      if (txtNombre.toUpperCase().indexOf(filter) > -1 || txtDef.toUpperCase().indexOf(filter) > -1) {
+        items[i].style.display = "";
+      } else {
+        items[i].style.display = "none";
+      }
+    }
+  }
+
+  // Ocultar la letra del grupo si no tiene elementos visibles
+  for (var j = 0; j < grupos.length; j++) {
+    var itemsEnGrupo = grupos[j].getElementsByClassName('glosario-item');
+    var algunVisible = false;
+    for (var k = 0; k < itemsEnGrupo.length; k++) {
+      if (itemsEnGrupo[k].style.display !== "none") {
+        algunVisible = true;
+        break;
+      }
+    }
+    grupos[j].style.display = algunVisible ? "" : "none";
+  }
+}
+</script>
+
+</body>
+</html>
