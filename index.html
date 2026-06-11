@@ -5,24 +5,182 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Glosario de Sistemas de Información</title>
   <style>
-    .glosario-container { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
-    .glosario-buscador { width: 100%; padding: 12px; margin-bottom: 20px; border: 2px solid #3b82f6; border-radius: 6px; font-size: 16px; box-sizing: border-box; }
-    .glosario-abc { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 25px; justify-content: center; }
-    .abc-btn { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e3a8a; padding: 6px 12px; border-radius: 4px; cursor: pointer; text-decoration: none; font-weight: bold; }
-    .abc-btn:hover { background: #3b82f6; color: white; }
-    .grupo-letra { margin-top: 30px; border-top: 2px solid #e2e8f0; padding-top: 10px; }
-    .letra-titulo { font-size: 24px; color: #1e3a8a; margin-bottom: 15px; }
-    .glosario-lista { list-style: none; padding: 0; }
-    .glosario-item { background: white; border: 1px solid #e2e8f0; padding: 15px; margin-bottom: 10px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: transform 0.2s; }
-    .glosario-item:hover { transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-    .termino-nombre { font-size: 18px; color: #2563eb; margin: 0 0 5px 0; font-weight: bold; }
-    .termino-def { color: #475569; margin: 0; font-size: 15px; line-height: 1.5; }
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #1e3a8a;
+      --bg-light: #f8fafc;
+      --text-main: #334155;
+      --text-light: #64748b;
+      --border-color: #e2e8f0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header Styles */
+    header {
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      letter-spacing: -0.025em;
+    }
+
+    /* Container & Search */
+    .glosario-container {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      flex: 1;
+    }
+
+    .glosario-buscador {
+      width: 100%;
+      padding: 16px 20px;
+      margin-bottom: 30px;
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      font-size: 18px;
+      box-sizing: border-box;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .glosario-buscador:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    }
+
+    /* ABC Navigation */
+    .glosario-abc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 40px;
+      justify-content: center;
+    }
+
+    .abc-btn {
+      background: white;
+      border: 1px solid var(--border-color);
+      color: var(--secondary-color);
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .abc-btn:hover {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+      transform: translateY(-1px);
+    }
+
+    /* Groups & Items */
+    .grupo-letra {
+      margin-top: 40px;
+    }
+
+    .letra-titulo {
+      font-size: 28px;
+      color: var(--secondary-color);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--primary-color);
+      display: inline-block;
+    }
+
+    .glosario-lista {
+      list-style: none;
+      padding: 0;
+    }
+
+    .glosario-item {
+      background: white;
+      border: 1px solid var(--border-color);
+      padding: 24px;
+      margin-bottom: 16px;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .glosario-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .termino-nombre {
+      font-size: 20px;
+      color: var(--primary-color);
+      margin: 0 0 10px 0;
+      font-weight: 700;
+    }
+
+    .termino-def {
+      color: var(--text-main);
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* Footer Styles */
+    footer {
+      background: #1e293b;
+      color: #f1f5f9;
+      padding: 40px 20px;
+      margin-top: 60px;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .footer-participants {
+      margin-bottom: 15px;
+      font-weight: 500;
+    }
+
+    .footer-unit {
+      color: #94a3b8;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.8rem; }
+      .glosario-item { padding: 16px; }
+    }
   </style>
 </head>
 <body>
 
+<header>
+  <h1>Glosario Sistemas de Información</h1>
+</header>
+
 <div class="glosario-container">
-  <h1>Glosario de Sistemas de Información</h1>
   
   <input type="text" id="inputBuscar" class="glosario-buscador" onkeyup="buscarTermino()" placeholder="Buscar término en el glosario...">
 
@@ -77,6 +235,17 @@
 
   </div>
 </div>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-participants">
+      Participantes: Luis Jiménez, Carlos Marval, Kimberly Zapata
+    </div>
+    <div class="footer-unit">
+      Unidad Curricular: Sistemas de Información 1
+    </div>
+  </div>
+</footer>
 
 <script>
 function buscarTermino() {
