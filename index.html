@@ -292,16 +292,39 @@
       display: block;
     }
 
-    .blog-placeholder {
-      text-align: center;
-      padding: 80px 20px;
-      color: var(--text-light);
+    .blog-card {
+      background: #f1f5f9;
+      border-radius: 14px;
+      padding: 28px 30px;
+      margin-bottom: 24px;
+      border-left: 5px solid var(--primary-color);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
 
-    .blog-placeholder h2 {
-      font-size: 1.5rem;
+    .blog-card h3 {
+      margin: 0 0 12px 0;
+      font-size: 20px;
       color: var(--secondary-color);
-      margin-bottom: 10px;
+    }
+
+    .blog-card p {
+      margin: 0 0 12px 0;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text-main);
+    }
+
+    .blog-card .autor {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary-color);
+      text-align: right;
+      margin-top: 14px;
+    }
+
+    .blog-card .autor span {
+      font-weight: 400;
+      color: var(--text-light);
     }
 
     @media (max-width: 600px) {
@@ -421,10 +444,70 @@
 
 <div id="tab-blog" class="tab-content">
   <div class="glosario-container">
-    <div class="blog-placeholder">
-      <h2>Blog</h2>
-      <p>Próximamente encontrarás aquí las entradas del blog sobre Sistemas de Información.</p>
+
+    <div class="blog-card">
+      <h3>Entrada 1</h3>
+      <p>¿Cómo entendimos qué necesitaba PETPULSE? Así lo hicimos.
+
+Antes de escribir una sola línea de código, teníamos que responder una pregunta básica: ¿qué necesita exactamente el usuario? Para eso aplicamos dos técnicas que aprendimos en clase y que, honestamente, cambiaron la forma en que pensamos el proyecto.
+
+ 
+
+Primero hablamos con la gente — La Entrevista
+
+La idea fue simple: en vez de asumir qué problemas tiene un dueño de mascota, fuimos a preguntarles directamente. Diseñamos una entrevista estructurada y la aplicamos a tres perfiles distintos de usuarios.
+
+Lo que encontramos nos sorprendió por lo obvio que era y lo poco que se habla de ello: la gente pierde los carnets de vacunas todo el tiempo. No es descuido, es que el papel no funciona para esto.
+
+Algunos hallazgos concretos:
+
+• María, ejecutiva de 34 años, nos dijo que lleva a su perro al veterinario y nunca recuerda cuándo fue la última vacuna.
+• José, que tiene 4 mascotas, tiene cuatro carnets distintos que constantemente confunde.
+• Andrea, dueña primeriza, simplemente no sabe qué vacunas son obligatorias ni cuándo aplicarlas.
+Esas tres historias nos dieron los tres módulos principales de PETPULSE: historial digital, panel multimascotas y guía con IA para primerizos.
+
+ 
+
+Luego lo pusimos en papel — Los Casos de Uso
+
+Una vez que sabíamos qué necesitaban los usuarios, teníamos que traducirlo en algo que el equipo pudiera programar sin adivinar. Para eso usamos los Casos de Uso, una técnica que básicamente te obliga a describir paso a paso cómo un usuario interactúa con el sistema.
+
+El más importante que documentamos fue "Agregar recordatorio de vacuna" — porque conecta exactamente el problema que encontramos en las entrevistas con la solución que construimos:
+
+1. El usuario abre el calendario en PETPULSE
+2. Toca "+ Agregar recordatorio"
+3. Selecciona el tipo, la mascota y la fecha
+4. Guarda — y el sistema se encarga del resto: actualiza el calendario y programa la notificación automática
+Simple en papel, pero ese flujo eliminó horas de debate en el equipo sobre cómo debía funcionar esa pantalla.
+
+El otro caso de uso que documentamos fue la identificación de raza con IA — donde el usuario 
+toma una foto de su mascota y el sistema le dice la raza y le genera un plan de vacunación personalizado. 
+Este nos tomó más tiempo de diseñar porque involucra un actor externo (la API de IA), pero el resultado justificó 
+el esfuerzo.
+
+ 
+
+¿Qué aprendimos de todo esto?
+
+Que las técnicas de requerimientos no
+ son burocracia académica — son la diferencia entre construir lo que el usuario necesita y construir lo que el equipo 
+ asume. Las entrevistas nos dieron el problema real. Los casos de uso nos dieron el mapa para resolverlo. PETPULSE existe 
+ como existe gracias a ese orden.</p>
+      <div class="autor"><span>Autor:</span> Carlos Marval</div>
     </div>
+
+    <div class="blog-card">
+      <h3>Entrada 2</h3>
+      <p>contenido entrada 2</p>
+      <div class="autor"><span>Autor:</span> </div>
+    </div>
+
+    <div class="blog-card">
+      <h3>Entrada 3</h3>
+      <p> ontenido entrada 3</p>
+      <div class="autor"><span>Autor:</span> </div>
+    </div>
+
   </div>
 </div>
 
