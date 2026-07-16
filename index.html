@@ -246,11 +246,70 @@
       letter-spacing: 0.1em;
     }
 
+    
+    .tabs-container {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+
+    .tabs-nav {
+      display: flex;
+      gap: 0;
+      border-bottom: 3px solid var(--border-color);
+      margin-bottom: 10px;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      padding: 14px 28px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-light);
+      cursor: pointer;
+      position: relative;
+      transition: color 0.3s;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -3px;
+    }
+
+    .tab-btn:hover {
+      color: var(--primary-color);
+    }
+
+    .tab-btn.active {
+      color: var(--primary-color);
+      border-bottom-color: var(--primary-color);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .blog-placeholder {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--text-light);
+    }
+
+    .blog-placeholder h2 {
+      font-size: 1.5rem;
+      color: var(--secondary-color);
+      margin-bottom: 10px;
+    }
+
     @media (max-width: 600px) {
       header { padding: 35px 15px 30px; }
       header h1 { font-size: 1.8rem; }
       .glosario-item { padding: 16px; }
       .termino-nombre { font-size: 17px; }
+      .tab-btn { padding: 12px 18px; font-size: 14px; }
     }
   </style>
 </head>
@@ -261,6 +320,14 @@
   <p class="subtitle">Unidad Curricular I &mdash; Definiciones y conceptos clave</p>
 </header>
 
+<div class="tabs-container">
+  <nav class="tabs-nav">
+    <button class="tab-btn active" onclick="cambiarTab('glosario')">Glosario</button>
+    <button class="tab-btn" onclick="cambiarTab('blog')">Blog</button>
+  </nav>
+</div>
+
+<div id="tab-glosario" class="tab-content active">
 <div class="glosario-container">
   
   <div class="search-wrapper">
@@ -350,6 +417,16 @@
 
   </div>
 </div>
+</div>
+
+<div id="tab-blog" class="tab-content">
+  <div class="glosario-container">
+    <div class="blog-placeholder">
+      <h2>Blog</h2>
+      <p>Próximamente encontrarás aquí las entradas del blog sobre Sistemas de Información.</p>
+    </div>
+  </div>
+</div>
 
 <footer>
   <div class="footer-content">
@@ -363,6 +440,17 @@
 </footer>
 
 <script>
+function cambiarTab(tab) {
+  var tabs = document.querySelectorAll('.tab-content');
+  var buttons = document.querySelectorAll('.tab-btn');
+  
+  tabs.forEach(function(t) { t.classList.remove('active'); });
+  buttons.forEach(function(b) { b.classList.remove('active'); });
+  
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.target.classList.add('active');
+}
+
 function buscarTermino() {
   var input = document.getElementById('inputBuscar');
   var filter = input.value.toUpperCase();
