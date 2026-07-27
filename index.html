@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Glosario de Sistemas de Información</title>
+  <title>Sistemas de Información</title>
   <style>
     :root {
       --primary-color: #6366f1;
@@ -18,9 +18,7 @@
       --card-bg: rgba(255,255,255,0.85);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -34,7 +32,6 @@
       min-height: 100vh;
     }
 
-    /* Header Styles */
     header {
       background: linear-gradient(135deg, #4338ca 0%, #6366f1 40%, #818cf8 100%);
       color: white;
@@ -80,74 +77,30 @@
       letter-spacing: 0.02em;
     }
 
-    /* Container & Search */
-    .glosario-container {
+    nav {
       max-width: 850px;
       margin: 0 auto;
-      padding: 40px 20px;
-      flex: 1;
-      width: 100%;
-    }
-
-    .glosario-buscador {
-      width: 100%;
-      padding: 16px 20px 16px 50px;
-      margin-bottom: 30px;
-      border: 2px solid var(--border-color);
-      border-radius: 14px;
-      font-size: 18px;
-      box-sizing: border-box;
-      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
-      transition: border-color 0.3s, box-shadow 0.3s;
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-    }
-
-    .glosario-buscador:focus {
-      outline: none;
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15), 0 4px 12px rgba(99, 102, 241, 0.1);
-    }
-
-    .search-wrapper {
-      position: relative;
-      margin-bottom: 30px;
-    }
-
-    .search-icon {
-      position: absolute;
-      left: 18px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 20px;
-      color: var(--text-light);
-      pointer-events: none;
-    }
-
-    /* ABC Navigation */
-    .glosario-abc {
+      padding: 20px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 40px;
       justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
     }
 
-    .abc-btn {
+    nav a {
+      text-decoration: none;
       background: var(--card-bg);
       backdrop-filter: blur(10px);
       border: 2px solid var(--border-color);
       color: var(--primary-color);
-      padding: 10px 18px;
-      border-radius: 10px;
-      cursor: pointer;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 15px;
-      transition: all 0.25s;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s;
     }
 
-    .abc-btn:hover {
+    nav a:hover {
       background: var(--primary-color);
       color: white;
       border-color: var(--primary-color);
@@ -155,70 +108,27 @@
       box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
     }
 
-    /* Groups & Items */
-    .grupo-letra {
-      margin-top: 40px;
+    .home-content {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      flex: 1;
+      width: 100%;
     }
 
-    .letra-titulo {
-      font-size: 28px;
+    .home-content h2 {
       color: var(--secondary-color);
+      font-size: 1.8rem;
       margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 3px solid var(--primary-light);
-      display: inline-block;
-      position: relative;
     }
 
-    .letra-titulo::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      width: 40px;
-      height: 3px;
-      background: var(--accent-color);
-      border-radius: 2px;
-    }
-
-    .glosario-lista {
-      list-style: none;
-      padding: 0;
-    }
-
-    .glosario-item {
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--border-color);
-      border-left: 4px solid var(--primary-color);
-      padding: 24px;
-      margin-bottom: 16px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-
-    .glosario-item:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 24px -4px rgba(99, 102, 241, 0.12);
-      border-left-color: var(--accent-color);
-    }
-
-    .termino-nombre {
-      font-size: 20px;
-      color: var(--primary-color);
-      margin: 0 0 10px 0;
-      font-weight: 700;
-    }
-
-    .termino-def {
+    .home-content p {
+      font-size: 17px;
+      line-height: 1.8;
       color: var(--text-main);
-      margin: 0;
-      font-size: 16px;
-      line-height: 1.7;
+      margin-bottom: 16px;
     }
 
-    /* Footer Styles */
     footer {
       background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
       color: #f1f5f9;
@@ -246,316 +156,30 @@
       letter-spacing: 0.1em;
     }
 
-    
-    .tabs-container {
-      max-width: 850px;
-      margin: 0 auto;
-      padding: 0 20px;
-      width: 100%;
-    }
-
-    .tabs-nav {
-      display: flex;
-      gap: 0;
-      border-bottom: 3px solid var(--border-color);
-      margin-bottom: 10px;
-    }
-
-    .tab-btn {
-      background: transparent;
-      border: none;
-      padding: 14px 28px;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text-light);
-      cursor: pointer;
-      position: relative;
-      transition: color 0.3s;
-      border-bottom: 3px solid transparent;
-      margin-bottom: -3px;
-    }
-
-    .tab-btn:hover {
-      color: var(--primary-color);
-    }
-
-    .tab-btn.active {
-      color: var(--primary-color);
-      border-bottom-color: var(--primary-color);
-    }
-
-    .tab-content {
-      display: none;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
-    .blog-card {
-      background: #f1f5f9;
-      border-radius: 14px;
-      padding: 28px 30px;
-      margin-bottom: 24px;
-      border-left: 5px solid var(--primary-color);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-
-    .blog-card h3 {
-      margin: 0 0 12px 0;
-      font-size: 20px;
-      color: var(--secondary-color);
-    }
-
-    .blog-card p {
-      margin: 0 0 12px 0;
-      font-size: 16px;
-      line-height: 1.7;
-      color: var(--text-main);
-    }
-
-    .blog-card .autor {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--primary-color);
-      text-align: right;
-      margin-top: 14px;
-    }
-
-    .blog-card .autor span {
-      font-weight: 400;
-      color: var(--text-light);
-    }
-
     @media (max-width: 600px) {
       header { padding: 35px 15px 30px; }
       header h1 { font-size: 1.8rem; }
-      .glosario-item { padding: 16px; }
-      .termino-nombre { font-size: 17px; }
-      .tab-btn { padding: 12px 18px; font-size: 14px; }
+      nav a { padding: 12px 18px; font-size: 14px; }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>Glosario Sistemas de Información</h1>
-  <p class="subtitle">Unidad Curricular I &mdash; Definiciones y conceptos clave</p>
+  <h1>Sistemas de Información</h1>
+  <p class="subtitle">Unidad Curricular I &mdash; Proyecto PETPULSE</p>
 </header>
 
-<div class="tabs-container">
-  <nav class="tabs-nav">
-    <button class="tab-btn active" onclick="cambiarTab('glosario')">Glosario</button>
-    <button class="tab-btn" onclick="cambiarTab('blog')">Blog</button>
-  </nav>
-</div>
+<nav>
+  <a href="index.html">Inicio</a>
+  <a href="glosario.html">Glosario</a>
+  <a href="blog.html">Blog</a>
+</nav>
 
-<div id="tab-glosario" class="tab-content active">
-<div class="glosario-container">
-  
-  <div class="search-wrapper">
-    <span class="search-icon">&#128269;</span>
-    <input type="text" id="inputBuscar" class="glosario-buscador" onkeyup="buscarTermino()" placeholder="Buscar término en el glosario...">
-  </div>
-
-  <div class="glosario-abc">
-    <a href="#letra-D" class="abc-btn">D</a>
-    <a href="#letra-I" class="abc-btn">I</a>
-    <a href="#letra-P" class="abc-btn">P</a>
-    <a href="#letra-S" class="abc-btn">S</a>
-    <a href="#sec-abreviaturas" class="abc-btn" style="background:var(--accent-color);color:#fff;border-color:var(--accent-color);">ABR</a>
-  </div>
-
-  <div id="contenedorTerminos">
-    
-    <div class="grupo-letra" id="letra-D">
-      <div class="letra-titulo">D</div>
-      <ul class="glosario-lista">
-        <li class="glosario-item">
-          <h3 class="termino-nombre">Dato</h3>
-          <p class="termino-def">Representación simbólica (letras, números o símbolos) de un hecho, evento o entidad. El dato es la materia prima sin contexto ni significado por sí mismo.</p>
-        </li>
-      </ul>
-    </div>
-
-    <div class="grupo-letra" id="letra-I">
-      <div class="letra-titulo">I</div>
-      <ul class="glosario-lista">
-        <li class="glosario-item">
-          <h3 class="termino-nombre">Información</h3>
-          <p class="termino-def">Datos procesados, organizados y dotados de significado que resultan útiles para la toma de decisiones. La información reduce la incertidumbre.</p>
-        </li>
-      </ul>
-    </div>
-
-    <div class="grupo-letra" id="letra-P">
-      <div class="letra-titulo">P</div>
-      <ul class="glosario-lista">
-        <li class="glosario-item">
-          <h3 class="termino-nombre">Procesamiento de Datos</h3>
-          <p class="termino-def">Conjunto de operaciones (clasificación, cálculo, resumen, almacenamiento) que transforman datos crudos en información útil y estructurada.</p>
-        </li>
-      </ul>
-    </div>
-
-    <div class="grupo-letra" id="letra-S">
-      <div class="letra-titulo">S</div>
-      <ul class="glosario-lista">
-        <li class="glosario-item">
-          <h3 class="termino-nombre">Sistema</h3>
-          <p class="termino-def">Conjunto de elementos interrelacionados que interactúan entre sí para alcanzar un objetivo común. Un sistema puede ser físico, lógico o social.</p>
-        </li>
-        <li class="glosario-item">
-          <h3 class="termino-nombre">Sistemas de Información</h3>
-          <p class="termino-def">Conjunto organizado de recursos (personas, tecnología, procesos) que recoge, almacena, procesa y distribuye información para apoyar la toma de decisiones y el control en una organización.</p>
-        </li>
-      </ul>
-    </div>
-
-    <div class="grupo-letra" id="sec-abreviaturas">
-      <div class="letra-titulo">Sistemas de Información por Función</div>
-      <ul class="glosario-lista">
-        <li class="glosario-item">
-          <h3 class="termino-nombre">PO &mdash; Proceso de Operaciones</h3>
-          <p class="termino-def">Registro de operaciones. Sistema encargado de capturar, almacenar y procesar las transacciones y actividades cotidianas del negocio.</p>
-        </li>
-        <li class="glosario-item">
-          <h3 class="termino-nombre">SAO &mdash; Soporte de Actividades de Oficina</h3>
-          <p class="termino-def">Gestión de documentos y agenda. Facilita la automatización de oficina, manejo de correspondencia, agenda de citas y flujos de trabajo administrativos.</p>
-        </li>
-        <li class="glosario-item">
-          <h3 class="termino-nombre">SIA &mdash; Sistema de Información Administrativa</h3>
-          <p class="termino-def">Reportes gerenciales. Proporce informes periódicos y resúmenes para los niveles medios de la organización que apoyan la planificación y el control.</p>
-        </li>
-        <li class="glosario-item">
-          <h3 class="termino-nombre">SSD &mdash; Sistema de Soporte a Decisiones</h3>
-          <p class="termino-def">Simulación de decisiones. Herramientas interactivas que ayudan a los gerentes a modelar escenarios y evaluar alternativas estratégicas.</p>
-        </li>
-        <li class="glosario-item">
-          <h3 class="termino-nombre">SSE &mdash; Sistema de Información para la Alta Dirección</h3>
-          <p class="termino-def">Dashboard ejecutivo. Panel de control que ofrece indicadores clave (KPIs) en tiempo real para que la alta dirección monitoree el desempeño organizacional.</p>
-        </li>
-      </ul>
-    </div>
-
-  </div>
-</div>
-</div>
-
-<div id="tab-blog" class="tab-content">
-  <div class="glosario-container">
-
-    <div class="blog-card">
-      <h3>¿Cómo entendimos qué necesitaba PETPULSE? Así lo hicimos.</h3>
-      <p>Antes de escribir una sola línea de código, teníamos que responder una pregunta básica: ¿qué necesita exactamente el usuario? Para eso aplicamos dos técnicas que aprendimos en clase y que, honestamente, cambiaron la forma en que pensamos el proyecto.</p>
-      <h4>Primero hablamos con la gente — La Entrevista</h4>
-      <p>La idea fue simple: en vez de asumir qué problemas tiene un dueño de mascota, fuimos a preguntarles directamente. Diseñamos una entrevista estructurada y la aplicamos a tres perfiles distintos de usuarios.</p>
-      <p>Lo que encontramos nos sorprendió por lo obvio que era y lo poco que se habla de ello: la gente pierde los carnets de vacunas todo el tiempo. No es descuido, es que el papel no funciona para esto.</p>
-      <p>Algunos hallazgos concretos:</p>
-      <ul>
-        <li>María, ejecutiva de 34 años, nos dijo que lleva a su perro al veterinario y nunca recuerda cuándo fue la última vacuna.</li>
-        <li>José, que tiene 4 mascotas, tiene cuatro carnets distintos que constantemente confunde.</li>
-        <li>Andrea, dueña primeriza, simplemente no sabe qué vacunas son obligatorias ni cuándo aplicarlas.</li>
-      </ul>
-      <p>Esas tres historias nos dieron los tres módulos principales de PETPULSE: historial digital, panel multimascotas y guía con IA para primerizos.</p>
-      <h4>Luego lo pusimos en papel — Los Casos de Uso</h4>
-      <p>Una vez que sabíamos qué necesitaban los usuarios, teníamos que traducirlo en algo que el equipo pudiera programar sin adivinar. Para eso usamos los Casos de Uso, una técnica que básicamente te obliga a describir paso a paso cómo un usuario interactúa con el sistema.</p>
-      <p>El más importante que documentamos fue "Agregar recordatorio de vacuna" — porque conecta exactamente el problema que encontramos en las entrevistas con la solución que construimos:</p>
-      <ol>
-        <li>El usuario abre el calendario en PETPULSE</li>
-        <li>Toca "+ Agregar recordatorio"</li>
-        <li>Selecciona el tipo, la mascota y la fecha</li>
-        <li>Guarda — y el sistema se encarga del resto: actualiza el calendario y programa la notificación automática</li>
-      </ol>
-      <p>Simple en papel, pero ese flujo eliminó horas de debate en el equipo sobre cómo debía funcionar esa pantalla.</p>
-      <p>El otro caso de uso que documentamos fue la identificación de raza con IA — donde el usuario toma una foto de su mascota y el sistema le dice la raza y le genera un plan de vacunación personalizado. Este nos tomó más tiempo de diseñar porque involucra un actor externo (la API de IA), pero el resultado justificó el esfuerzo.</p>
-      <h4>¿Qué aprendimos de todo esto?</h4>
-      <p>Que las técnicas de requerimientos no son burocracia académica — son la diferencia entre construir lo que el usuario necesita y construir lo que el equipo asume. Las entrevistas nos dieron el problema real. Los casos de uso nos dieron el mapa para resolverlo. PETPULSE existe como existe gracias a ese orden.</p>
-      <div class="autor"><span>Autor:</span> Carlos Marval</div>
-    </div>
-
-    <div class="blog-card">
-      <h3>Técnica 2: Modelado de Requerimientos con Casos de Uso</h3>
-      <h4>¿Qué son los casos de uso?</h4>
-      <p>Según Whitten &amp; Bentley, los casos de uso son una técnica de modelado de requerimientos que describe las interacciones entre los actores externos y el sistema de información. Permiten representar de forma clara y sin ambigüedades qué hace el sistema, para quién lo hace y cómo responde ante las acciones del usuario.</p>
-      <h5>¿Por qué elegimos esta técnica?</h5>
-      <p>Dado que PETPULSE será una aplicación interactiva que integrará módulos de registro médico, alertas automáticas de salud y consumo de APIs de Inteligencia Artificial, era indispensable modelar sin ambigüedades cómo interactuará el usuario con cada módulo del sistema. El modelado con casos de uso nos permite estructurar los requerimientos funcionales de forma visual y narrativa.</p>
-      <h5>Los actores del sistema</h5>
-      <ul>
-        <li><strong>Dueño de mascota (Principal):</strong> Usuario que registra mascotas, agrega recordatorios, consulta historiales y usa la identificación por IA.</li>
-        <li><strong>Sistema de Inteligencia Artificial (Secundario):</strong> Procesa fotografías de mascotas para identificar la raza y generar recomendaciones de cuidado.</li>
-        <li><strong>Sistema de Notificaciones (Externo):</strong> Envía alertas automáticas al dispositivo móvil del usuario sobre fechas importantes.</li>
-      </ul>
-      <h5>Casos de uso identificados</h5>
-      <p>A partir de los requerimientos obtenidos en las entrevistas, se identificaron los siguientes casos de uso para el MVP de PETPULSE:</p>
-      <ul>
-        <li>Registrar usuario y mascota.</li>
-        <li>Ver historial médico de la mascota.</li>
-        <li>Agregar recordatorio de vacuna o cita.</li>
-        <li>Ver calendario de eventos y recordatorios.</li>
-        <li>Registrar vacuna o desparasitación.</li>
-        <li>Identificar raza de mascota con IA.</li>
-        <li>Recibir notificación automática de fecha próxima.</li>
-      </ul>
-      <h5>¿Cómo se ve el flujo del sistema?</h5>
-      <p>El actor principal, el <strong>Dueño de Mascota</strong>, interactúa directamente con los siete casos de uso del sistema. Además, dos de estas funcionalidades requieren integración con servicios externos:</p>
-      <ul>
-        <li><strong>Identificar raza con IA</strong> se comunica con el Sistema de Inteligencia Artificial para analizar la fotografía de la mascota y generar recomendaciones.</li>
-        <li><strong>Recibir notificación automática</strong> se conecta con el Sistema de Notificaciones para enviar recordatorios al dispositivo móvil del usuario.</li>
-      </ul>
-      <p>Este modelado permitió visualizar de forma clara cómo interactúan los usuarios y los servicios externos con PETPULSE, facilitando la organización de las funcionalidades que formarán parte del MVP.</p>
-      <div class="autor"><span>Autor:</span> Luis Jiménez</div>
-    </div>
-
-    <div class="blog-card">
-      <h3>Ejemplo de caso de uso: Agregar recordatorio de vacuna</h3>
-      <p>Este caso de uso fue seleccionado por ser el más representativo del valor central del sistema: conecta directamente el problema detectado en las entrevistas con la solución tecnológica.</p>
-      <h5>Actor principal</h5>
-      <p>Dueño de mascota.</p>
-      <h5>Antes de comenzar</h5>
-      <p>El usuario tiene sesión iniciada y al menos una mascota registrada.</p>
-      <h5>¿Cómo funciona?</h5>
-      <ol>
-        <li>Abre la pantalla de Calendario.</li>
-        <li>Toca <strong>+ Agregar recordatorio</strong>.</li>
-        <li>Se despliega el formulario.</li>
-        <li>Selecciona el tipo: Vacuna.</li>
-        <li>Selecciona la mascota.</li>
-        <li>Escribe una descripción.</li>
-        <li>Selecciona la fecha.</li>
-        <li>Toca <strong>Guardar recordatorio</strong>.</li>
-        <li>El sistema confirma y actualiza el calendario con un indicador de color.</li>
-      </ol>
-      <h5>¿Qué pasa si ocurre un error?</h5>
-      <p>Si selecciona una fecha anterior a la actual, el sistema muestra un mensaje de error y solicita una fecha futura.</p>
-      <h5>Resultado</h5>
-      <p>El recordatorio queda registrado y se programa la notificación automática.</p>
-      <hr>
-      <h4>Ejemplo de caso de uso: Identificar raza de mascota con Inteligencia Artificial</h4>
-      <h5>Actores involucrados</h5>
-      <ul>
-        <li><strong>Dueño de mascota (Principal).</strong></li>
-        <li><strong>Sistema de IA (Secundario).</strong></li>
-      </ul>
-      <h5>¿Cómo funciona?</h5>
-      <ol>
-        <li>Accede a la función de identificación.</li>
-        <li>Toma una fotografía de su mascota.</li>
-        <li>El sistema envía la imagen al motor de IA.</li>
-        <li>La IA detecta la raza con un porcentaje de confianza.</li>
-        <li>PETPULSE muestra el resultado y sus características.</li>
-        <li>El sistema genera automáticamente el calendario de vacunación recomendado.</li>
-        <li>El usuario guarda esta información.</li>
-      </ol>
-      <h5>Resultado</h5>
-      <p>La raza queda registrada en el perfil y se genera un plan de cuidado personalizado.</p>
-      <hr>
-      <h4>Conclusión</h4>
-      <p>La aplicación combinada de estas dos técnicas del ciclo de vida del desarrollo de sistemas — la Entrevista y el Modelado con Casos de Uso — ha permitido al equipo construir una base sólida, justificada y orientada al usuario real para el proyecto PETPULSE. Por un lado, las entrevistas permitieron empatizar con el usuario final y validar que la desorganización es un problema real. Por otro lado, el modelado con casos de uso tradujo esos hallazgos en especificaciones técnicas claras, eliminando ambigüedades. Tal como lo plantean Whitten &amp; Bentley, estas técnicas son complementarias por naturaleza y garantizan que el MVP de PETPULSE resuelva efectivamente el caos operativo en la gestión de la salud animal.</p>
-      <div class="autor"><span>Autor:</span> Kimberly  Zapata</div>
-    </div>
-
-  </div>
+<div class="home-content">
+  <h2>Bienvenidos</h2>
+  <p>Este sitio contiene el glosario de términos y las publicaciones del blog del proyecto PETPULSE, desarrollado para la materia de Sistemas de Información I.</p>
+  <p>PETPULSE es una aplicación móvil diseñada para帮助 a los dueños de mascotas a organizar y gestionar el historial de salud de sus mascotas de forma digital.</p>
 </div>
 
 <footer>
@@ -568,54 +192,6 @@
     </div>
   </div>
 </footer>
-
-<script>
-function cambiarTab(tab) {
-  var tabs = document.querySelectorAll('.tab-content');
-  var buttons = document.querySelectorAll('.tab-btn');
-  
-  tabs.forEach(function(t) { t.classList.remove('active'); });
-  buttons.forEach(function(b) { b.classList.remove('active'); });
-  
-  document.getElementById('tab-' + tab).classList.add('active');
-  event.target.classList.add('active');
-}
-
-function buscarTermino() {
-  var input = document.getElementById('inputBuscar');
-  var filter = input.value.toUpperCase();
-  var items = document.getElementsByClassName('glosario-item');
-  var grupos = document.getElementsByClassName('grupo-letra');
-
-  for (var i = 0; i < items.length; i++) {
-    var nombre = items[i].getElementsByClassName('termino-nombre')[0];
-    var definicion = items[i].getElementsByClassName('termino-def')[0];
-    
-    if (nombre || definicion) {
-      var txtNombre = nombre.textContent || nombre.innerText;
-      var txtDef = definicion.textContent || definicion.innerText;
-      
-      if (txtNombre.toUpperCase().indexOf(filter) > -1 || txtDef.toUpperCase().indexOf(filter) > -1) {
-        items[i].style.display = "";
-      } else {
-        items[i].style.display = "none";
-      }
-    }
-  }
-
-  for (var j = 0; j < grupos.length; j++) {
-    var itemsEnGrupo = grupos[j].getElementsByClassName('glosario-item');
-    var algunVisible = false;
-    for (var k = 0; k < itemsEnGrupo.length; k++) {
-      if (itemsEnGrupo[k].style.display !== "none") {
-        algunVisible = true;
-        break;
-      }
-    }
-    grupos[j].style.display = algunVisible ? "" : "none";
-  }
-}
-</script>
 
 </body>
 </html>
