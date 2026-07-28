@@ -1,1 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investigación, Modelado y Documentación - Sistemas de Información</title>
+  <style>
+    :root {
+      --primary-color: #6366f1;
+      --primary-light: #818cf8;
+      --secondary-color: #4338ca;
+      --accent-color: #f59e0b;
+      --bg-light: #f0f4ff;
+      --bg-gradient: linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 50%, #fdf2f8 100%);
+      --text-main: #334155;
+      --text-light: #64748b;
+      --border-color: #e2e8f0;
+      --card-bg: rgba(255,255,255,0.85);
+    }
 
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #4338ca 0%, #6366f1 40%, #818cf8 100%);
+      color: white;
+      padding: 50px 20px 45px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
+      animation: shimmer 8s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(20px, -20px); }
+    }
+
+    header h1 {
+      margin: 0 0 10px 0;
+      font-size: 2.6rem;
+      letter-spacing: -0.025em;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
+
+    header .subtitle {
+      margin: 0;
+      font-size: 1.05rem;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    nav {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 2px solid var(--border-color);
+      color: var(--primary-color);
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+
+    nav a:hover {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+
+    nav a.active {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+
+    .main-content {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      flex: 1;
+      width: 100%;
+    }
+
+    .main-content > h2 {
+      color: var(--secondary-color);
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .main-content > p.intro {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--text-light);
+      margin-bottom: 30px;
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 30px 32px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 16px rgba(99, 102, 241, 0.08);
+    }
+
+    .section-card h3 {
+      color: var(--secondary-color);
+      font-size: 1.4rem;
+      margin: 0 0 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 34px;
+      height: 34px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .section-card .responsable {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-color);
+      font-weight: 600;
+      margin: 0 0 18px 46px;
+    }
+
+    .placeholder-box {
+      border: 2px dashed var(--border-color);
+      border-radius: 12px;
+      padding: 30px 20px;
+      text-align: center;
+      color: var(--text-light);
+      font-size: 15px;
+      background: rgba(240, 244, 255, 0.5);
+    }
+
+    .section-card p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--text-main);
+      margin: 0 0 14px 0;
+    }
+
+    .section-card h4 {
+      color: var(--primary-color);
+      font-size: 1.05rem;
+      margin: 22px 0 10px 0;
+    }
+
+    .iteration-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    .iteration-item {
+      background: var(--bg-light);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--primary-color);
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+
+    .iteration-item .iter-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary-color);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .iteration-item h5 {
+      margin: 0 0 8px 0;
+      color: var(--secondary-color);
+      font-size: 1.02rem;
+    }
+
+    .iteration-item ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: var(--text-main);
+    }
+
+    .cycle-note {
+      margin-top: 20px;
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 10px;
+      padding: 16px 18px;
+      font-size: 14.5px;
+      color: var(--text-main);
+    }
+
+    .cycle-note strong { color: var(--accent-color); }
+
+    footer {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+      color: #f1f5f9;
+      padding: 40px 20px;
+      text-align: center;
+      width: 100%;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .footer-participants {
+      margin-bottom: 15px;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .footer-unit {
+      color: #a5b4fc;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    @media (max-width: 600px) {
+      header { padding: 35px 15px 30px; }
+      header h1 { font-size: 1.8rem; }
+      nav a { padding: 12px 18px; font-size: 14px; }
+      .section-card { padding: 22px 18px; }
+      .section-card .responsable { margin-left: 0; margin-top: 6px; }
+      .section-card h3 { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Sistemas de Información</h1>
+  <p class="subtitle">Unidad Curricular I &mdash; Proyecto PETPULSE</p>
+</header>
+
+<nav>
+  <a href="index.html">Inicio</a>
+  <a href="glosario.html">Glosario</a>
+  <a href="blog.html">Blog</a>
+  <a href="investigacion.html" class="active">Investigación, Modelado y Documentación</a>
+</nav>
+
+<div class="main-content">
+
+  <h2>Investigación, Modelado y Documentación</h2>
+  <p class="intro">
+    En esta sección se documentan las investigaciones, modelos y estrategias
+    desarrolladas por el equipo para la construcción del sistema PETPULSE,
+    conforme a lo solicitado en la actividad de la asignatura Sistemas de
+    Información I.
+  </p>
+
+  <!-- PUNTO 1 - Pendiente por asignar / compañero -->
+  <div class="section-card">
+    <h3><span class="section-number">1</span> Tema pendiente</h3>
+    <p class="responsable">Responsable: Luis Gimenes </p>
+    <div class="placeholder-box">
+      punto de luis
+    </div>
+  </div>
+
+  <!-- PUNTO 2 - Pendiente por asignar / compañero -->
+  <div class="section-card">
+    <h3><span class="section-number">2</span> Tema pendiente</h3>
+    <p class="responsable">Responsable: Luis Jiménez</p>
+    <div class="placeholder-box">
+      punto de luis
+    </div>
+  </div>
+
+  <!-- PUNTO 3 - Pendiente por asignar / compañero -->
+  <div class="section-card">
+    <h3><span class="section-number">3</span> Tema pendiente</h3>
+    <p class="responsable">Responsable: Carlos marval</p>
+    <div class="placeholder-box">
+      punto de talos
+    </div>
+  </div>
+
+  <!-- PUNTO 4 - Estrategia de Desarrollo: Prototipado y Ciclo de Vida -->
+  <div class="section-card">
+    <h3><span class="section-number">4</span> Estrategia de Desarrollo: Prototipado y Ciclo de Vida</h3>
+    <p class="responsable">Responsable: Kimberly Zapata </p>
+
+    <p>
+      Para el desarrollo del sistema PETPULSE se adoptó un enfoque de
+      <strong>Desarrollo Rápido de Aplicaciones (RAD, por sus siglas en
+      inglés Rapid Application Development)</strong>. Este modelo prioriza
+      la construcción iterativa de prototipos por encima de una planificación
+      exhaustiva previa, permitiendo obtener retroalimentación temprana de
+      los usuarios (dueños de mascotas) y ajustar el sistema de forma
+      progresiva antes de invertir grandes esfuerzos en el desarrollo final.
+    </p>
+    <p>
+      La elección de RAD para PETPULSE se justifica porque el proyecto
+      requiere validar rápidamente la usabilidad de funciones clave &mdash;
+      como el registro de mascotas, el historial médico digital y los
+      recordatorios de salud&mdash; con usuarios reales, reduciendo el
+      riesgo de construir funcionalidades que no resuelvan sus necesidades
+      reales.
+    </p>
+
+    <h4>Ciclo de vida aplicado: tres iteraciones</h4>
+
+    <div class="iteration-grid">
+      <div class="iteration-item">
+        <div class="iter-label">Iteración 1</div>
+        <h5>Modelado básico y prototipo de baja fidelidad</h5>
+        <ul>
+          <li>Levantamiento de requisitos iniciales con los futuros usuarios.</li>
+          <li>Definición de los módulos principales: registro de mascota, historial de salud, recordatorios y perfil de usuario.</li>
+          <li>Elaboración de maquetas (wireframes) en papel o herramientas como Figma, sin colores ni funcionalidad real.</li>
+          <li>Objetivo: validar el flujo de navegación y la estructura general de pantallas antes de programar.</li>
+        </ul>
+      </div>
+
+      <div class="iteration-item">
+        <div class="iter-label">Iteración 2</div>
+        <h5>Refinamiento del modelo y prototipo funcional</h5>
+        <ul>
+          <li>Incorporación de retroalimentación obtenida en la Iteración 1.</li>
+          <li>Diseño visual definitivo: paleta de colores, tipografía y componentes de interfaz.</li>
+          <li>Construcción de un prototipo interactivo o clickeable con datos de prueba (mock data).</li>
+          <li>Pruebas de usabilidad con un grupo reducido de usuarios para detectar mejoras.</li>
+        </ul>
+      </div>
+
+      <div class="iteration-item">
+        <div class="iter-label">Iteración 3</div>
+        <h5>Ingeniería de la información completa y sistema final</h5>
+        <ul>
+          <li>Modelado formal de datos: diagrama entidad-relación y base de datos definitiva.</li>
+          <li>Desarrollo del sistema funcional completo, integrando frontend y backend.</li>
+          <li>Pruebas de integración, corrección de errores y optimización.</li>
+          <li>Entrega del sistema final listo para su implementación y uso.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cycle-note">
+      <strong>Nota metodológica:</strong> cada iteración del ciclo RAD se
+      retroalimenta de la anterior: los hallazgos de la Iteración 1 ajustan
+      el diseño de la Iteración 2, y los resultados de las pruebas
+      funcionales de la Iteración 2 guían la ingeniería de información
+      final en la Iteración 3. Este enfoque cíclico permite que PETPULSE
+      evolucione de una idea conceptual a un sistema completamente
+      funcional en periodos cortos de tiempo.
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-participants">
+      Participantes: Luis Jiménez, Carlos Marval, Kimberly Zapata
+    </div>
+    <div class="footer-unit">
+      Unidad Curricular: Sistemas de Información 1
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
