@@ -329,12 +329,121 @@
     </div>
   </div>
 
-  <!-- PUNTO 3 - Pendiente por asignar / compañero -->
+  <!-- PUNTO 3 - Fase de Control: Diccionario de Proyecto -->
   <div class="section-card">
-    <h3><span class="section-number">3</span> Tema pendiente</h3>
-    <p class="responsable">Responsable: Carlos marval</p>
-    <div class="placeholder-box">
-      punto de talos
+    <h3><span class="section-number">3</span> Fase de Control: Diccionario de Proyecto</h3>
+    <p class="responsable">Responsable: Carlos Marval</p>
+ 
+    <p>
+      La fase de control tiene como objetivo mantener organizada toda la
+      información que se va generando durante el desarrollo del proyecto.
+      Para ello se utiliza el <strong>Diccionario de Proyecto</strong>, que
+      funciona como un documento donde se registran todos los elementos
+      que forman parte del sistema, permitiendo que el equipo trabaje con
+      la misma información y evitando confusiones durante el desarrollo.
+    </p>
+    <p>
+      Una de las recomendaciones más importantes es que el diccionario no
+      debe elaborarse al finalizar el proyecto, sino que debe actualizarse
+      constantemente. Cada vez que se crea una entidad en el Diagrama
+      Entidad-Relación (DER), un proceso o un flujo de datos en el
+      Diagrama de Flujo de Datos (DFD), este debe registrarse
+      inmediatamente en el diccionario, manteniendo la documentación
+      organizada y actualizada a medida que el proyecto avanza.
+    </p>
+    <p>
+      El Diccionario de Proyecto incluye la definición de los datos, las
+      estructuras, los procesos y los flujos de información utilizados en
+      el sistema, permitiendo que cualquier integrante del equipo
+      comprenda fácilmente el significado de cada elemento y cómo se
+      relaciona con los demás modelos desarrollados. Además, sirve como
+      apoyo para mantener la coherencia entre todos los diagramas del
+      proyecto: si en el DER aparece una entidad como <em>Mascota</em>, o
+      en el DFD existe un proceso como <em>Gestionar Mascotas</em>, ambos
+      deben encontrarse definidos dentro del diccionario.
+    </p>
+    <p>
+      En otras palabras, si un dato, proceso, flujo o estructura no
+      aparece registrado en el Diccionario de Proyecto, se considera que
+      ese elemento no forma parte oficialmente del sistema. Por esta
+      razón, el diccionario se convierte en una herramienta fundamental
+      para mantener la organización, la consistencia y el control de toda
+      la documentación del proyecto.
+    </p>
+ 
+    <h4>Definiciones de datos (Entidades)</h4>
+    <div class="dict-table-wrapper">
+      <table class="dict-table">
+        <thead>
+          <tr><th>Elemento</th><th>Definición</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Usuario</td><td>Persona que utiliza PETPULSE para registrar y administrar la información de sus mascotas.</td></tr>
+          <tr><td>Mascota</td><td>Animal registrado en el sistema, del cual se almacenan sus datos personales y de salud.</td></tr>
+          <tr><td>Cita</td><td>Registro de una cita programada para atención veterinaria o servicio de peluquería.</td></tr>
+          <tr><td>Recordatorio</td><td>Aviso creado por el usuario para recordar vacunas, medicamentos o citas importantes.</td></tr>
+        </tbody>
+      </table>
+    </div>
+ 
+    <h4>Estructuras (Almacenes de datos)</h4>
+    <div class="dict-table-wrapper">
+      <table class="dict-table">
+        <thead>
+          <tr><th>Almacén</th><th>Definición</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>D1 &mdash; Usuarios</td><td>Guarda la información de todos los usuarios registrados en la plataforma.</td></tr>
+          <tr><td>D2 &mdash; Mascotas</td><td>Almacena los datos generales de las mascotas registradas.</td></tr>
+          <tr><td>D3 &mdash; Historial Médico</td><td>Contiene la información relacionada con vacunas, enfermedades y antecedentes médicos de cada mascota.</td></tr>
+          <tr><td>D4 &mdash; Citas</td><td>Guarda las citas veterinarias y de peluquería programadas por los usuarios.</td></tr>
+          <tr><td>D5 &mdash; Recordatorios</td><td>Almacena los recordatorios creados para vacunas, medicamentos y otros cuidados.</td></tr>
+        </tbody>
+      </table>
+    </div>
+ 
+    <h4>Flujos de datos</h4>
+    <div class="dict-table-wrapper">
+      <table class="dict-table">
+        <thead>
+          <tr><th>Flujo</th><th>Definición</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Datos de usuario</td><td>Información que el usuario ingresa para registrarse, iniciar sesión o actualizar su perfil.</td></tr>
+          <tr><td>Datos de mascota</td><td>Información utilizada para registrar o modificar los datos de una mascota.</td></tr>
+          <tr><td>Solicitud de cita</td><td>Datos enviados por el usuario para programar una cita.</td></tr>
+          <tr><td>Confirmación</td><td>Respuesta enviada por el sistema indicando que una acción fue realizada correctamente.</td></tr>
+          <tr><td>Consulta a PetIA</td><td>Pregunta realizada por el usuario al chatbot sobre el cuidado de su mascota.</td></tr>
+          <tr><td>Respuesta de PetIA</td><td>Recomendación u orientación básica generada por el chatbot.</td></tr>
+        </tbody>
+      </table>
+    </div>
+ 
+    <h4>Procesos</h4>
+    <div class="dict-table-wrapper">
+      <table class="dict-table">
+        <thead>
+          <tr><th>Proceso</th><th>Definición</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Gestionar usuarios</td><td>Permite registrar usuarios, iniciar sesión y actualizar la información del perfil.</td></tr>
+          <tr><td>Gestionar mascotas</td><td>Permite registrar, consultar y modificar la información de las mascotas.</td></tr>
+          <tr><td>Gestionar salud de la mascota</td><td>Permite llevar el control del historial médico, vacunas y enfermedades de cada mascota.</td></tr>
+          <tr><td>Gestionar citas y recordatorios</td><td>Permite programar citas y crear recordatorios relacionados con el cuidado de la mascota.</td></tr>
+          <tr><td>Asistencia PetIA</td><td>Brinda orientación básica sobre el cuidado de las mascotas y recomienda acudir al veterinario cuando sea necesario.</td></tr>
+          <tr><td>Administración del sistema</td><td>Permite al administrador gestionar la información de los usuarios registrados.</td></tr>
+        </tbody>
+      </table>
+    </div>
+ 
+    <div class="cycle-note">
+      <strong>Conclusión:</strong> el diccionario de proyecto permite
+      mantener organizada toda la información utilizada durante el
+      desarrollo de PETPULSE. Gracias a este documento, cada entidad,
+      proceso, flujo de datos y estructura queda claramente definida,
+      facilitando el trabajo en equipo y asegurando que todos los
+      integrantes manejen los mismos conceptos durante el desarrollo del
+      sistema.
     </div>
   </div>
 
