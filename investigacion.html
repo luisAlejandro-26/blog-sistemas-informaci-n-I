@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investigación, Modelado y Documentación - Sistemas de Información</title>
+  <style>
+    :root {
+      --primary-color: #6366f1;
+      --primary-light: #818cf8;
+      --secondary-color: #4338ca;
+      --accent-color: #f59e0b;
+      --bg-light: #f0f4ff;
+      --bg-gradient: linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 50%, #fdf2f8 100%);
+      --text-main: #334155;
+      --text-light: #64748b;
+      --border-color: #e2e8f0;
+      --card-bg: rgba(255,255,255,0.85);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #4338ca 0%, #6366f1 40%, #818cf8 100%);
+      color: white;
+      padding: 50px 20px 45px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
+      animation: shimmer 8s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(20px, -20px); }
+    }
+
+    header h1 {
+      margin: 0 0 10px 0;
+      font-size: 2.6rem;
+      letter-spacing: -0.025em;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
+
+    header .subtitle {
+      margin: 0;
+      font-size: 1.05rem;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    nav {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 2px solid var(--border-color);
+      color: var(--primary-color);
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+
+    nav a:hover {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+
+    nav a.active {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+
+    .main-content {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      flex: 1;
+      width: 100%;
+    }
+
+    .main-content > h2 {
+      color: var(--secondary-color);
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .main-content > p.intro {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--text-light);
+      margin-bottom: 30px;
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 30px 32px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 16px rgba(99, 102, 241, 0.08);
+    }
+
+    .section-card h3 {
+      color: var(--secondary-color);
+      font-size: 1.4rem;
+      margin: 0 0 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 34px;
+      height: 34px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .section-card .responsable {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-color);
+      font-weight: 600;
+      margin: 0 0 18px 46px;
+    }
+
+    .section-card .img-wrapper {
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .section-card .img-wrapper img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 2px solid var(--border-color);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .section-card ul {
+      margin: 10px 0 14px 20px;
+      line-height: 1.8;
+    }
+
+    .section-card li {
+      margin-bottom: 8px;
+    }
+
+    .section-card h5 {
+      margin: 16px 0 8px 0;
+      color: var(--text-main);
+    }
+
+    .section-card p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--text-main);
+      margin: 0 0 14px 0;
+    }
+
+    .section-card h4 {
+      color: var(--primary-color);
+      font-size: 1.05rem;
+      margin: 22px 0 10px 0;
+    }
+
+    .iteration-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    .iteration-item {
+      background: var(--bg-light);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--primary-color);
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+
+    .iteration-item .iter-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary-color);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .iteration-item h5 {
+      margin: 0 0 8px 0;
+      color: var(--secondary-color);
+      font-size: 1.02rem;
+    }
+
+    .iteration-item ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: var(--text-main);
+    }
+
+    .cycle-note {
+      margin-top: 20px;
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 10px;
+      padding: 16px 18px;
+      font-size: 14.5px;
+      color: var(--text-main);
+    }
+
+    .cycle-note strong { color: var(--accent-color); }
+
+    footer {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+      color: #f1f5f9;
+      padding: 40px 20px;
+      text-align: center;
+      width: 100%;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .footer-participants {
+      margin-bottom: 15px;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .footer-unit {
+      color: #a5b4fc;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    @media (max-width: 600px) {
+      header { padding: 35px 15px 30px; }
+      header h1 { font-size: 1.8rem; }
+      nav a { padding: 12px 18px; font-size: 14px; }
+      .section-card { padding: 22px 18px; }
+      .section-card .responsable { margin-left: 0; margin-top: 6px; }
+      .section-card h3 { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Sistemas de Información</h1>
+  <p class="subtitle">Unidad Curricular I &mdash; Proyecto PETPULSE</p>
+</header>
+
+<nav>
+  <a href="index.html">Inicio</a>
+  <a href="glosario.html">Glosario</a>
+  <a href="blog.html">Blog</a>
+  <a href="investigacion.html" class="active">Investigación, Modelado y Documentación</a>
+</nav>
+
+<div class="main-content">
+
+  <h2>Investigación, Modelado y Documentación</h2>
+  <p class="intro">
+    En esta sección se documentan las investigaciones, modelos y estrategias
+    desarrolladas por el equipo para la construcción del sistema PETPULSE,
+    conforme a lo solicitado en la actividad de la asignatura Sistemas de
+    Información I.
+  </p>
+
+  <!-- PUNTO 1 - Fase de Definición: Investigación de Hechos -->
+  <div class="section-card">
+    <h3><span class="section-number">1</span> Fase de Definición: Investigación de Hechos</h3>
+    <p class="responsable">Responsable: Luis Jiménez</p>
+
+    <p>
+      Todo proyecto de software exitoso comienza con una buena investigación.
+      Antes de escribir una sola línea de código, creemos que es fundamental
+      comprender el problema que queremos resolver, conocer a nuestros usuarios
+      y validar que la solución realmente aporte valor. En esta primera fase
+      de PETPULSE, nos enfocamos en recopilar información, analizar las
+      necesidades de los dueños de mascotas y definir los requerimientos que
+      servirán como base para el desarrollo de nuestra aplicación.
+    </p>
+
+    <h4>¿Qué es JAD o Desarrollo Conjunto de Aplicaciones?</h4>
+    <p>
+      El Desarrollo Conjunto de Aplicaciones (JAD o DCA) es una metodología
+      que busca acelerar y mejorar el proceso de desarrollo de software mediante
+      la colaboración constante entre desarrolladores, analistas, clientes y
+      usuarios finales. La idea principal es que reunir a todos los
+      involucrados desde las primeras etapas del proyecto permite obtener una
+      visión más completa del problema, tomar mejores decisiones y construir
+      una solución que realmente responda a las necesidades de los usuarios.
+    </p>
+    <p>
+      En lugar de trabajar de forma aislada, todos participan activamente en
+      la definición de requerimientos y en la validación de las funcionalidades
+      del sistema. Decidimos adoptar este enfoque porque queríamos que las
+      decisiones del proyecto estuvieran respaldadas por las necesidades reales
+      de quienes utilizarán la aplicación.
+    </p>
+
+    <h4>Aplicación de JAD en PETPULSE</h4>
+    <p>
+      Para el desarrollo de PETPULSE adoptamos esta metodología colaborativa,
+      reduciendo la distancia entre el equipo técnico y los usuarios. Nos
+      organizamos de la siguiente manera:
+    </p>
+    <ul>
+      <li><strong>Luis Jiménez</strong> asumió el rol de líder del proyecto,
+        encargado de coordinar la visión general del sistema, organizar el
+        trabajo y distribuir las funcionalidades entre los integrantes.</li>
+      <li><strong>Carolina, Carlos y Luis</strong> participamos en el análisis
+        de requerimientos, el diseño y la construcción del sistema utilizando
+        React para el frontend, Node.js para el backend y Oracle Database
+        para el almacenamiento de datos y AWS S3 para el storage de las
+        imágenes.</li>
+    </ul>
+    <p>
+      Nuestra estrategia de trabajo consistió en dividir el proyecto por
+      funcionalidades (features), permitiendo que cada integrante desarrollara
+      módulos específicos basados en las necesidades detectadas durante la
+      investigación. De esta forma logramos mantener una mejor organización y
+      asegurar que cada componente respondiera a un problema previamente
+      identificado.
+    </p>
+
+    <h4>Análisis de problemas utilizando PIECES</h4>
+    <p>
+      Para comprender la situación actual del control veterinario tradicional
+      utilizamos el marco de referencia PIECES, una herramienta que nos
+      permitió clasificar los problemas encontrados desde diferentes
+      perspectivas.
+    </p>
+    <ul>
+      <li><strong>Prestaciones (Performance):</strong> Identificamos que uno
+        de los principales inconvenientes es la dificultad para acceder
+        rápidamente al historial médico cuando el propietario cambia de
+        veterinario o no dispone del carnet físico. Esto provoca retrasos
+        en la atención y pérdida de continuidad en los tratamientos.</li>
+      <li><strong>Información:</strong> Observamos que la información
+        almacenada en carnets y notas en papel suele estar incompleta,
+        desorganizada o incluso ser ilegible. En situaciones de emergencia
+        esto representa un riesgo importante.</li>
+      <li><strong>Economía:</strong> También detectamos que los olvidos de
+        citas previamente pagadas y el incumplimiento de tratamientos
+        médicos generan gastos adicionales que podrían evitarse con un
+        mejor sistema de seguimiento.</li>
+      <li><strong>Control y seguridad:</strong> Comprobamos que el método
+        tradicional no ofrece ningún mecanismo de respaldo. Si el carnet
+        físico se pierde, se moja o se deteriora, toda la información
+        desaparece sin posibilidad de recuperación.</li>
+      <li><strong>Eficiencia:</strong> Otro problema importante es que los
+        veterinarios deben registrar nuevamente información que ya fue
+        recopilada anteriormente, generando pérdida de tiempo tanto para
+        el profesional como para el propietario de la mascota.</li>
+      <li><strong>Servicio:</strong> Finalmente, observamos que muchos
+        dueños primerizos desconocen los calendarios de vacunación, los
+        cuidados preventivos y las recomendaciones específicas según la
+        raza de su mascota, lo que limita la calidad del servicio
+        recibido.</li>
+    </ul>
+
+    <h4>Investigación de hechos</h4>
+    <p>
+      Para evitar construir una solución basada en suposiciones, decidimos
+      aplicar diferentes técnicas de investigación que nos permitieran conocer
+      las necesidades reales de los usuarios.
+    </p>
+    <h5>Observación directa</h5>
+    <p>
+      La primera técnica que utilizamos fue la observación participante. Como
+      los tres integrantes del proyecto somos dueños de mascotas, pudimos
+      experimentar directamente los problemas cotidianos relacionados con el
+      control veterinario. Durante esta actividad identificamos que encontrar
+      información médica en momentos de estrés o durante un viaje resulta
+      complicado y poco práctico. Esta experiencia nos permitió confirmar que
+      existe la necesidad de contar con una aplicación móvil que centralice
+      toda la información médica de las mascotas.
+    </p>
+    <h5>Entrevistas estructuradas</h5>
+    <p>
+      Como complemento de la investigación realizamos entrevistas individuales
+      con perfiles específicos para obtener información más detallada.
+      Entrevistamos a María, una dueña de mascota con poco tiempo disponible;
+      José, médico veterinario; y Andrea, dueña primeriza.
+    </p>
+    <p>
+      Gracias a estas entrevistas descubrimos necesidades que no habían surgido
+      en los cuestionarios, entre ellas la importancia de incorporar un sistema
+      de identificación de razas mediante inteligencia artificial para ofrecer
+      recomendaciones y planes de cuidado personalizados.
+    </p>
+
+    <h4>Catálogo de requerimientos</h4>
+    <p>
+      Una vez concluida la investigación definimos los requerimientos que
+      conformarán la primera versión funcional del sistema.
+    </p>
+    <h5>Requerimientos funcionales</h5>
+    <p>Las funcionalidades principales del MVP serán:</p>
+    <ul>
+      <li>Identificación automática de razas mediante inteligencia artificial
+        utilizando las APIs de OpenAI o Gemini.</li>
+      <li>Sistema de alertas para recordar vacunas y citas veterinarias.</li>
+      <li>Historial médico digital con operaciones completas de creación,
+        consulta, actualización y eliminación de registros.</li>
+      <li>Generación de reportes médicos en formato PDF para compartir
+        información con terceros.</li>
+    </ul>
+    <h5>Requerimientos no funcionales</h5>
+    <p>
+      Además de las funcionalidades, también establecimos características
+      relacionadas con la calidad del sistema:
+    </p>
+    <ul>
+      <li>La aplicación deberá cargar en menos de tres segundos.</li>
+      <li>Las contraseñas y los datos sensibles deberán almacenarse de forma
+        segura mediante mecanismos de cifrado en Oracle Database.</li>
+      <li>La interfaz deberá ser completamente responsive para facilitar su
+        uso desde dispositivos móviles.</li>
+    </ul>
+
+    <h4>Alcance y restricciones del proyecto</h4>
+    <p>
+      En esta primera etapa, decidimos enfocar PETPULSE principalmente en los
+      dueños de mascotas, ofreciéndoles una solución digital para el
+      seguimiento de la salud de sus animales. Sin embargo, desde el inicio
+      pensamos en la escalabilidad del proyecto, por lo que diseñamos una
+      arquitectura que permita incorporar en futuras versiones un módulo
+      destinado a clínicas veterinarias para gestionar directamente la
+      información de sus pacientes.
+    </p>
+    <p>
+      En cuanto a las restricciones tecnológicas, trabajaremos utilizando
+      React, Node.js y Oracle Database. Además, tendremos que administrar
+      cuidadosamente el consumo de las APIs de inteligencia artificial para
+      mantenernos dentro de las cuotas gratuitas disponibles y garantizar
+      la viabilidad del proyecto.
+    </p>
+
+    <div class="cycle-note">
+      <strong>Conclusión:</strong> Esta fase de investigación nos permitió
+      comprobar que muchos de los problemas relacionados con el control
+      veterinario tradicional son reales y afectan diariamente a los dueños
+      de mascotas. Gracias a la aplicación de la metodología JAD, al análisis
+      mediante PIECES y al uso de técnicas como la observación directa, los
+      cuestionarios y las entrevistas, logramos definir requerimientos sólidos
+      y fundamentados en necesidades reales. Con esta base nos sentimos
+      preparados para comenzar el desarrollo de PETPULSE, con la confianza de
+      que cada funcionalidad que implementemos estará orientada a resolver
+      problemas concretos y a ofrecer una mejor experiencia tanto para los
+      dueños de mascotas como, en futuras etapas, para los profesionales
+      veterinarios.
+    </div>
+  </div>
+
+  <!-- PUNTO 2 - Fase de Modelización: El Blueprint del Sistema -->
+  <div class="section-card">
+    <h3><span class="section-number">2</span> Fase de Modelización: El "Blueprint" del Sistema PETPULSE</h3>
+    <p class="responsable">Responsable: Luis Jiménez</p>
+
+    <p>
+      En esta fase transformamos los requerimientos detectados en la
+      Investigación de Hechos en modelos técnicos estructurados. Estos modelos
+      definen la lógica de datos, los flujos de procesos y la arquitectura
+      física y de conectividad que soportarán el ecosistema de PETPULSE.
+    </p>
+
+    <h4>A. Modelado de Datos (Estructura)</h4>
+    <p>
+      Para garantizar una base de datos relacional estable, consistente y
+      escalable, desarrollamos el Diagrama Entidad-Relación (DER) en Oracle
+      SQL Developer utilizando la notación de Ingeniería de la Información
+      (Pata de Gallo).
+    </p>
+    <div class="img-wrapper">
+      <img src="modelo_der_petpilse.jpeg" alt="Diagrama Entidad-Relación del sistema PETPULSE">
+    </div>
+    <h5>Descripción del Modelo y Componentes</h5>
+    <p><strong>Entidades Fuertes (Núcleo del negocio):</strong></p>
+    <ul>
+      <li><strong>USUARIOS:</strong> Almacena la información de los dueños
+        (id_usuario, nombre_usuario, correo, contrasena_hash, rol_cuenta,
+        etc.).</li>
+      <li><strong>MASCOTAS:</strong> Guarda los datos del sujeto principal
+        del sistema (id_mascota, id_usuario, nombre_mascota, especie, raza,
+        peso_kg, etc.).</li>
+    </ul>
+    <p><strong>Entidades Débiles (Dependientes):</strong></p>
+    <ul>
+      <li><strong>SESIONES:</strong> Gestiona la autenticación activa y tokens
+        de los usuarios (id_sesion, token_sesion, expira). Depende de
+        USUARIOS.</li>
+      <li><strong>EVENTO_SALUD:</strong> Registra el historial clínico y
+        calendario de vacunación/citas (id_evento, tipo_evento, titulo,
+        fecha_evento, estado). Depende de MASCOTAS.</li>
+      <li><strong>MENSAJES_CHAT:</strong> Conserva la interacción contextual
+        con la IA (id_mensaje, rol, contenido). Depende de MASCOTAS.</li>
+    </ul>
+    <h5>Normalización e Integridad Referencial:</h5>
+    <ul>
+      <li><strong>Tercera Forma Normal (3FN):</strong> Se eliminaron
+        dependencias transitivas y redundancias atómicas.</li>
+      <li><strong>Regla ON DELETE CASCADE:</strong> Configurada en todas las
+        Claves Foráneas (FK). Si un usuario borra su cuenta, sus mascotas y
+        sesiones se eliminan automáticamente; del mismo modo, borrar una
+        mascota elimina en cascada sus eventos de salud y mensajes de chat
+        asociados, evitando registros huérfanos.</li>
+    </ul>
+
+    <h4>B. Modelado de Procesos (Flujo)</h4>
+    <p>
+      Mediante la técnica de Análisis Estructurado, modelamos el flujo
+      dinámico de la información utilizando Diagramas de Flujo de Datos (DFD).
+    </p>
+    <h5>1. Diagrama de Contexto (Nivel 0)</h5>
+    <p>
+      Representa al sistema como una entidad central unificada ("caja negra")
+      para establecer los límites del proyecto y sus interacciones con el
+      entorno externo.
+    </p>
+    <div class="img-wrapper">
+      <img src="DFD-contexto_petpulse.png" alt="Diagrama de Contexto Nivel 0 de PETPULSE">
+    </div>
+    <p><strong>Agentes Externos:</strong></p>
+    <ul>
+      <li><strong>Usuario (Dueño de mascota):</strong> Interactúa enviando
+        datos de registro, información médica y prompts con fotos; recibe
+        confirmaciones, alertas de salud y respuestas contextuales.</li>
+      <li><strong>Administrador:</strong> Envía parámetros de
+        gestión/administración de usuarios y recibe reportes del sistema.</li>
+      <li><strong>Sistema de IA (API Externa):</strong> Recibe la imagen y
+        consulta procesada; devuelve la raza identificada y
+        recomendaciones.</li>
+    </ul>
+    <h5>2. DFD de Nivel 1: Explosión de Procesos</h5>
+    <p>
+      Realizamos la descomposición funcional para abrir la caja negra y
+      detallar los 6 subsistemas principales con sus respectivos almacenes
+      de datos:
+    </p>
+    <p><strong>Subprocesos del Sistema:</strong></p>
+    <ul>
+      <li><strong>1.0 Gestionar Usuarios:</strong> Administra el registro,
+        autenticación y manejo de perfiles contra D1 - Usuarios.</li>
+      <li><strong>2.0 Gestionar Mascotas:</strong> Mantiene la información
+        física de los animales en D2 - Mascotas.</li>
+      <li><strong>3.0 Gestionar Salud:</strong> Modifica y consulta el
+        historial clínico registrado en D3 - Historial Médico.</li>
+      <li><strong>4.0 Gestionar Citas y Recordatorios:</strong> Agenda y
+        emite las alertas almacenadas en D4 - Citas y D5 -
+        Recordatorios.</li>
+      <li><strong>5.0 Asistencia PetIA:</strong> Canaliza las imágenes y
+        prompts hacia la API externa y recibe la
+        clasificación/recomendaciones.</li>
+      <li><strong>6.0 Administración:</strong> Permite al administrador del
+        sistema auditar usuarios y solicitar reportes.</li>
+    </ul>
+
+    <h4>C. Modelado de Redes (Conectividad)</h4>
+    <p>
+      Para estructurar la arquitectura lógica y física, diseñamos el Diagrama
+      de Conexión de Puestos, mapeando la distribución de los componentes en
+      la red y los datos que viajan entre nodos.
+    </p>
+    <div class="img-wrapper">
+      <img src="Diagrama_conexion_puestos.png" alt="Diagrama de Conexión de Puestos de PETPULSE">
+    </div>
+    <h5>Distribución por Nodos y Protocolos</h5>
+    <ul>
+      <li><strong>Nodo Cliente (Frontend):</strong> Ubicado en el dispositivo
+        del usuario (Web/Móvil). Capa de presentación, entrada de datos y
+        visualización de alertas e historial. Transmite credenciales,
+        consultas y fotos hacia el Servidor de Aplicaciones vía HTTP/HTTPS
+        (APIs REST).</li>
+      <li><strong>Servidor de Aplicaciones (Backend):</strong> Servidor central
+        de lógica de negocio. Orquestación de APIs, autenticación y gestión
+        de sesiones. Se comunica con la base de datos mediante SQL/Middleware
+        y con la red externa vía HTTPS.</li>
+      <li><strong>Servidor de Datos (Persistencia):</strong> Base de datos
+        Oracle. Almacenamiento persistente de las tablas (USUARIOS, MASCOTAS,
+        EVENTO_SALUD, SESIONES, MENSAJES_CHAT).</li>
+      <li><strong>Nodo Externo (API de IA):</strong> Cloud (API Google Gemini).
+        Visión por computadora para análisis de fotos y generación de
+        recomendaciones. Recibe Imagen / Prompt y retorna Recomendaciones /
+        Raza.</li>
+    </ul>
+
+    <div class="cycle-note">
+      <strong>Conclusión:</strong> Los tres modelos desarrollados en esta fase
+      — el DER para la estructura de datos, el DFD para los flujos de
+      procesos y el Diagrama de Conexión de Puestos para la arquitectura de
+      red — proporcionan una base técnica sólida para el desarrollo de
+      PETPULSE. Gracias a estos modelos, el equipo cuenta con una guía clara
+      que orienta tanto la implementación de la base de datos como la
+      distribución de componentes en la infraestructura del sistema.
+    </div>
+  </div>
+
+  <!-- PUNTO 3 - Fase de Control: Diccionario de Proyecto -->
+  <div class="section-card">
+    <h3><span class="section-number">3</span> Fase de Control: Diccionario de Proyecto</h3>
+    <p class="responsable">Responsable: Carlos Marval</p>
+ 
+    <p>
+      La fase de control tiene como objetivo mantener organizada toda la
+      información que se va generando durante el desarrollo del proyecto.
+      Para ello se utiliza el <strong>Diccionario de Proyecto</strong>, que
+      funciona como un documento donde se registran todos los elementos
+      que forman parte del sistema, permitiendo que el equipo trabaje con
+      la misma información y evitando confusiones durante el desarrollo.
+    </p>
+    <p>
+      Una de las recomendaciones más importantes es que el diccionario no
+      debe elaborarse al finalizar el proyecto, sino que debe actualizarse
+      constantemente. Cada vez que se crea una entidad en el Diagrama
+      Entidad-Relación (DER), un proceso o un flujo de datos en el
+      Diagrama de Flujo de Datos (DFD), este debe registrarse
+      inmediatamente en el diccionario, manteniendo la documentación
+      organizada y actualizada a medida que el proyecto avanza.
+    </p>
+    <p>
+      El Diccionario de Proyecto incluye la definición de los datos, las
+      estructuras, los procesos y los flujos de información utilizados en
+      el sistema, permitiendo que cualquier integrante del equipo
+      comprenda fácilmente el significado de cada elemento y cómo se
+      relaciona con los demás modelos desarrollados. Además, sirve como
+      apoyo para mantener la coherencia entre todos los diagramas del
+      proyecto: si en el DER aparece una entidad como <em>Mascota</em>, o
+      en el DFD existe un proceso como <em>Gestionar Mascotas</em>, ambos
+      deben encontrarse definidos dentro del diccionario.
+    </p>
+    <p>
+      En otras palabras, si un dato, proceso, flujo o estructura no
+      aparece registrado en el Diccionario de Proyecto, se considera que
+      ese elemento no forma parte oficialmente del sistema. Por esta
+      razón, el diccionario se convierte en una herramienta fundamental
+      para mantener la organización, la consistencia y el control de toda
+      la documentación del proyecto.
+    </p>
+ 
+    <h4>Definiciones de datos (Entidades)</h4>
+    <div class="dict-table-wrapper">
+      <table class="dict-table">
+        <thead>
+          <tr><th>Elemento</th><th>Definición</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Usuario</td><td>Persona que utiliza PETPULSE para registrar y administrar la información de sus mascotas.</td></tr>
+          <tr><td>Mascota</td><td>Animal registrado en el sistema, del cual se almacenan sus datos personales y de salud.</td></tr>
+          <tr><td>Cita</td><td>Registro de una cita programada para atención veterinaria o servicio de peluquería.</td></tr>
+          <tr><td>Recordatorio</td><td>Aviso creado por el usuario para recordar vacunas, medicamentos o citas importantes.</td></tr>
+        </tbody>
+      </table>
+    </div>
+ 
+    <h4>Estructuras (Almacenes de datos)</h4>
+    <div class="dict-table-wrapper">
+      <table class="dict-table">
+        <thead>
+          <tr><th>Almacén</th><th>Definición</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>D1 &mdash; Usuarios</td><td>Guarda la información de todos los usuarios registrados en la plataforma.</td></tr>
+          <tr><td>D2 &mdash; Mascotas</td><td>Almacena los datos generales de las mascotas registradas.</td></tr>
+          <tr><td>D3 &mdash; Historial Médico</td><td>Contiene la información relacionada con vacunas, enfermedades y antecedentes médicos de cada mascota.</td></tr>
+          <tr><td>D4 &mdash; Citas</td><td>Guarda las citas veterinarias y de peluquería programadas por los usuarios.</td></tr>
+          <tr><td>D5 &mdash; Recordatorios</td><td>Almacena los recordatorios creados para vacunas, medicamentos y otros cuidados.</td></tr>
+        </tbody>
+      </table>
+    </div>
+ 
+    <h4>Flujos de datos</h4>
+    <div class="dict-table-wrapper">
+      <table class="dict-table">
+        <thead>
+          <tr><th>Flujo</th><th>Definición</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Datos de usuario</td><td>Información que el usuario ingresa para registrarse, iniciar sesión o actualizar su perfil.</td></tr>
+          <tr><td>Datos de mascota</td><td>Información utilizada para registrar o modificar los datos de una mascota.</td></tr>
+          <tr><td>Solicitud de cita</td><td>Datos enviados por el usuario para programar una cita.</td></tr>
+          <tr><td>Confirmación</td><td>Respuesta enviada por el sistema indicando que una acción fue realizada correctamente.</td></tr>
+          <tr><td>Consulta a PetIA</td><td>Pregunta realizada por el usuario al chatbot sobre el cuidado de su mascota.</td></tr>
+          <tr><td>Respuesta de PetIA</td><td>Recomendación u orientación básica generada por el chatbot.</td></tr>
+        </tbody>
+      </table>
+    </div>
+ 
+    <h4>Procesos</h4>
+    <div class="dict-table-wrapper">
+      <table class="dict-table">
+        <thead>
+          <tr><th>Proceso</th><th>Definición</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Gestionar usuarios</td><td>Permite registrar usuarios, iniciar sesión y actualizar la información del perfil.</td></tr>
+          <tr><td>Gestionar mascotas</td><td>Permite registrar, consultar y modificar la información de las mascotas.</td></tr>
+          <tr><td>Gestionar salud de la mascota</td><td>Permite llevar el control del historial médico, vacunas y enfermedades de cada mascota.</td></tr>
+          <tr><td>Gestionar citas y recordatorios</td><td>Permite programar citas y crear recordatorios relacionados con el cuidado de la mascota.</td></tr>
+          <tr><td>Asistencia PetIA</td><td>Brinda orientación básica sobre el cuidado de las mascotas y recomienda acudir al veterinario cuando sea necesario.</td></tr>
+          <tr><td>Administración del sistema</td><td>Permite al administrador gestionar la información de los usuarios registrados.</td></tr>
+        </tbody>
+      </table>
+    </div>
+ 
+    <div class="cycle-note">
+      <strong>Conclusión:</strong> el diccionario de proyecto permite
+      mantener organizada toda la información utilizada durante el
+      desarrollo de PETPULSE. Gracias a este documento, cada entidad,
+      proceso, flujo de datos y estructura queda claramente definida,
+      facilitando el trabajo en equipo y asegurando que todos los
+      integrantes manejen los mismos conceptos durante el desarrollo del
+      sistema.
+    </div>
+  </div>
+
+  <!-- PUNTO 4 - Estrategia de Desarrollo: Prototipado y Ciclo de Vida -->
+  <div class="section-card">
+    <h3><span class="section-number">4</span> Estrategia de Desarrollo: Prototipado y Ciclo de Vida</h3>
+    <p class="responsable">Responsable: Kimberly Zapata </p>
+
+    <p>
+      Para el desarrollo del sistema PETPULSE se adoptó un enfoque de
+      <strong>Desarrollo Rápido de Aplicaciones (RAD, por sus siglas en
+      inglés Rapid Application Development)</strong>. Este modelo prioriza
+      la construcción iterativa de prototipos por encima de una planificación
+      exhaustiva previa, permitiendo obtener retroalimentación temprana de
+      los usuarios (dueños de mascotas) y ajustar el sistema de forma
+      progresiva antes de invertir grandes esfuerzos en el desarrollo final.
+    </p>
+    <p>
+      La elección de RAD para PETPULSE se justifica porque el proyecto
+      requiere validar rápidamente la usabilidad de funciones clave &mdash;
+      como el registro de mascotas, el historial médico digital y los
+      recordatorios de salud&mdash; con usuarios reales, reduciendo el
+      riesgo de construir funcionalidades que no resuelvan sus necesidades
+      reales.
+    </p>
+
+    <h4>Ciclo de vida aplicado: tres iteraciones</h4>
+
+    <div class="iteration-grid">
+      <div class="iteration-item">
+        <div class="iter-label">Iteración 1</div>
+        <h5>Modelado básico y prototipo de baja fidelidad</h5>
+        <ul>
+          <li>Levantamiento de requisitos iniciales con los futuros usuarios.</li>
+          <li>Definición de los módulos principales: registro de mascota, historial de salud, recordatorios y perfil de usuario.</li>
+          <li>Elaboración de maquetas (wireframes) en papel o herramientas como Figma, sin colores ni funcionalidad real.</li>
+          <li>Objetivo: validar el flujo de navegación y la estructura general de pantallas antes de programar.</li>
+        </ul>
+      </div>
+
+      <div class="iteration-item">
+        <div class="iter-label">Iteración 2</div>
+        <h5>Refinamiento del modelo y prototipo funcional</h5>
+        <ul>
+          <li>Incorporación de retroalimentación obtenida en la Iteración 1.</li>
+          <li>Diseño visual definitivo: paleta de colores, tipografía y componentes de interfaz.</li>
+          <li>Construcción de un prototipo interactivo o clickeable con datos de prueba (mock data).</li>
+          <li>Pruebas de usabilidad con un grupo reducido de usuarios para detectar mejoras.</li>
+        </ul>
+      </div>
+
+      <div class="iteration-item">
+        <div class="iter-label">Iteración 3</div>
+        <h5>Ingeniería de la información completa y sistema final</h5>
+        <ul>
+          <li>Modelado formal de datos: diagrama entidad-relación y base de datos definitiva.</li>
+          <li>Desarrollo del sistema funcional completo, integrando frontend y backend.</li>
+          <li>Pruebas de integración, corrección de errores y optimización.</li>
+          <li>Entrega del sistema final listo para su implementación y uso.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cycle-note">
+      <strong>Nota metodológica:</strong> cada iteración del ciclo RAD se
+      retroalimenta de la anterior: los hallazgos de la Iteración 1 ajustan
+      el diseño de la Iteración 2, y los resultados de las pruebas
+      funcionales de la Iteración 2 guían la ingeniería de información
+      final en la Iteración 3. Este enfoque cíclico permite que PETPULSE
+      evolucione de una idea conceptual a un sistema completamente
+      funcional en periodos cortos de tiempo.
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-participants">
+      Participantes: Luis Jiménez, Carlos Marval, Kimberly Zapata
+    </div>
+    <div class="footer-unit">
+      Unidad Curricular: Sistemas de Información 1
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
