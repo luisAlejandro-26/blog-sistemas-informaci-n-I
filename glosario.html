@@ -3,379 +3,130 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Glosario de Sistemas de Información</title>
-  <style>
-    :root {
-      --primary-color: #6366f1;
-      --primary-light: #818cf8;
-      --secondary-color: #4338ca;
-      --accent-color: #f59e0b;
-      --bg-light: #f0f4ff;
-      --bg-gradient: linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 50%, #fdf2f8 100%);
-      --text-main: #334155;
-      --text-light: #64748b;
-      --border-color: #e2e8f0;
-      --card-bg: rgba(255,255,255,0.85);
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: var(--bg-gradient);
-      background-attachment: fixed;
-      color: var(--text-main);
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    header {
-      background: linear-gradient(135deg, #4338ca 0%, #6366f1 40%, #818cf8 100%);
-      color: white;
-      padding: 50px 20px 45px;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
-      position: relative;
-      overflow: hidden;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
-      animation: shimmer 8s ease-in-out infinite;
-    }
-
-    @keyframes shimmer {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(20px, -20px); }
-    }
-
-    header h1 {
-      margin: 0 0 10px 0;
-      font-size: 2.6rem;
-      letter-spacing: -0.025em;
-      position: relative;
-      z-index: 1;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.15);
-    }
-
-    header .subtitle {
-      margin: 0;
-      font-size: 1.05rem;
-      opacity: 0.9;
-      position: relative;
-      z-index: 1;
-      font-weight: 300;
-      letter-spacing: 0.02em;
-    }
-
-    nav {
-      max-width: 850px;
-      margin: 0 auto;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      text-decoration: none;
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      border: 2px solid var(--border-color);
-      color: var(--primary-color);
-      padding: 14px 28px;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 16px;
-      transition: all 0.3s;
-    }
-
-    nav a:hover, nav a.active {
-      background: var(--primary-color);
-      color: white;
-      border-color: var(--primary-color);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-    }
-
-    .glosario-container {
-      max-width: 850px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      flex: 1;
-      width: 100%;
-    }
-
-    .glosario-buscador {
-      width: 100%;
-      padding: 16px 20px 16px 50px;
-      margin-bottom: 30px;
-      border: 2px solid var(--border-color);
-      border-radius: 14px;
-      font-size: 18px;
-      box-sizing: border-box;
-      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
-      transition: border-color 0.3s, box-shadow 0.3s;
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-    }
-
-    .glosario-buscador:focus {
-      outline: none;
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15), 0 4px 12px rgba(99, 102, 241, 0.1);
-    }
-
-    .search-wrapper {
-      position: relative;
-      margin-bottom: 30px;
-    }
-
-    .search-icon {
-      position: absolute;
-      left: 18px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 20px;
-      color: var(--text-light);
-      pointer-events: none;
-    }
-
-    .glosario-abc {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 40px;
-      justify-content: center;
-    }
-
-    .abc-btn {
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      border: 2px solid var(--border-color);
-      color: var(--primary-color);
-      padding: 10px 18px;
-      border-radius: 10px;
-      cursor: pointer;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 15px;
-      transition: all 0.25s;
-    }
-
-    .abc-btn:hover {
-      background: var(--primary-color);
-      color: white;
-      border-color: var(--primary-color);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-    }
-
-    .grupo-letra {
-      margin-top: 40px;
-    }
-
-    .letra-titulo {
-      font-size: 28px;
-      color: var(--secondary-color);
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 3px solid var(--primary-light);
-      display: inline-block;
-      position: relative;
-    }
-
-    .letra-titulo::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      width: 40px;
-      height: 3px;
-      background: var(--accent-color);
-      border-radius: 2px;
-    }
-
-    .glosario-lista {
-      list-style: none;
-      padding: 0;
-    }
-
-    .glosario-item {
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--border-color);
-      border-left: 4px solid var(--primary-color);
-      padding: 24px;
-      margin-bottom: 16px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-
-    .glosario-item:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 24px -4px rgba(99, 102, 241, 0.12);
-      border-left-color: var(--accent-color);
-    }
-
-    .termino-nombre {
-      font-size: 20px;
-      color: var(--primary-color);
-      margin: 0 0 10px 0;
-      font-weight: 700;
-    }
-
-    .termino-def {
-      color: var(--text-main);
-      margin: 0;
-      font-size: 16px;
-      line-height: 1.7;
-    }
-
-    footer {
-      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
-      color: #f1f5f9;
-      padding: 40px 20px;
-      text-align: center;
-      width: 100%;
-      margin-top: auto;
-    }
-
-    .footer-content {
-      max-width: 850px;
-      margin: 0 auto;
-    }
-
-    .footer-participants {
-      margin-bottom: 15px;
-      font-weight: 500;
-      font-size: 16px;
-    }
-
-    .footer-unit {
-      color: #a5b4fc;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    @media (max-width: 600px) {
-      header { padding: 35px 15px 30px; }
-      header h1 { font-size: 1.8rem; }
-      .glosario-item { padding: 16px; }
-      .termino-nombre { font-size: 17px; }
-    }
-  </style>
+  <title>Glosario — Sistemas de Información</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-<header>
-  <h1>Glosario Sistemas de Información</h1>
-  <p class="subtitle">Unidad Curricular I &mdash; Definiciones y conceptos clave</p>
+<header class="encabezado-sitio">
+  <h1>Glosario</h1>
+  <p class="subtitulo">Definiciones y conceptos clave — Sistemas de Información I</p>
+  <span class="insignia">PETPULSE</span>
 </header>
 
-<nav>
-   <a href="index.html">Inicio</a>
-  <a href="glosario.html">Glosario</a>
+<nav class="navegacion-sitio">
+  <a href="index.html">Inicio</a>
+  <a href="glosario.html" class="activo">Glosario</a>
   <a href="blog.html">Blog</a>
-
-  <a href="investigacion.html">Investigación, Modelado y Documentación</a>
+  <a href="investigacion.html">Investigación y Modelado</a>
 </nav>
 
-<div class="glosario-container">
-  
-  <div class="search-wrapper">
-    <span class="search-icon">&#128269;</span>
-    <input type="text" id="inputBuscar" class="glosario-buscador" onkeyup="buscarTermino()" placeholder="Buscar término en el glosario...">
+<div class="contenido-pagina">
+
+  <div class="buscador-envoltura">
+    <span class="buscador-icono">🔍</span>
+    <input type="text" id="entradaBuscar" class="buscador-glosario" onkeyup="buscarTermino()" placeholder="Buscar término en el glosario...">
   </div>
 
-  <div class="glosario-abc">
-    <a href="#letra-D" class="abc-btn">D</a>
-    <a href="#letra-I" class="abc-btn">I</a>
-    <a href="#letra-P" class="abc-btn">P</a>
-    <a href="#letra-S" class="abc-btn">S</a>
-    <a href="#sec-abreviaturas" class="abc-btn" style="background:var(--accent-color);color:#fff;border-color:var(--accent-color);">ABR</a>
+  <div class="indice-alfabetico">
+    <a href="#letra-D" class="boton-letra">D</a>
+    <a href="#letra-I" class="boton-letra">I</a>
+    <a href="#letra-J" class="boton-letra">J</a>
+    <a href="#letra-P" class="boton-letra">P</a>
+    <a href="#letra-S" class="boton-letra">S</a>
+    <a href="#sec-abreviaturas" class="boton-letra destacado">ABR</a>
   </div>
 
   <div id="contenedorTerminos">
-    
+
     <div class="grupo-letra" id="letra-D">
-      <div class="letra-titulo">D</div>
-      <ul class="glosario-lista">
-        <li class="glosario-item">
-          <h3 class="termino-nombre">Dato</h3>
-          <p class="termino-def">Representación simbólica (letras, números o símbolos) de un hecho, evento o entidad. El dato es la materia prima sin contexto ni significado por sí mismo.</p>
+      <div class="titulo-letra">D</div>
+      <ul class="lista-glosario">
+        <li class="item-glosario">
+          <h3 class="nombre-termino">Dato</h3>
+          <p class="definicion-termino">Representación simbólica (letras, números o símbolos) de un hecho, evento o entidad. El dato es la materia prima sin contexto ni significado por sí mismo.</p>
+        </li>
+        <li class="item-glosario">
+          <h3 class="nombre-termino">Diccionario de Proyecto</h3>
+          <p class="definicion-termino">Documento de control donde se registran definiciones de datos, estructuras, flujos y procesos. Si un término no está en el diccionario, no existe en el proyecto. Ver <a href="investigacion.html#fase-3">Fase 3</a>.</p>
         </li>
       </ul>
     </div>
 
     <div class="grupo-letra" id="letra-I">
-      <div class="letra-titulo">I</div>
-      <ul class="glosario-lista">
-        <li class="glosario-item">
-          <h3 class="termino-nombre">Información</h3>
-          <p class="termino-def">Datos procesados, organizados y dotados de significado que resultan útiles para la toma de decisiones. La información reduce la incertidumbre.</p>
+      <div class="titulo-letra">I</div>
+      <ul class="lista-glosario">
+        <li class="item-glosario">
+          <h3 class="nombre-termino">Información</h3>
+          <p class="definicion-termino">Datos procesados, organizados y dotados de significado que resultan útiles para la toma de decisiones. La información reduce la incertidumbre.</p>
+        </li>
+        <li class="item-glosario">
+          <h3 class="nombre-termino">Integridad referencial</h3>
+          <p class="definicion-termino">Propiedad que garantiza la consistencia de las relaciones entre tablas mediante claves foráneas. En PETPULSE se aplica con <code>ON DELETE CASCADE</code>.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="grupo-letra" id="letra-J">
+      <div class="titulo-letra">J</div>
+      <ul class="lista-glosario">
+        <li class="item-glosario">
+          <h3 class="nombre-termino">JAD / DCA — Desarrollo Conjunto de Aplicaciones</h3>
+          <p class="definicion-termino">Metodología colaborativa que reúne a desarrolladores, analistas y usuarios finales desde las primeras etapas para definir requerimientos y validar funcionalidades. Ver <a href="investigacion.html#fase-1">Fase 1</a>.</p>
         </li>
       </ul>
     </div>
 
     <div class="grupo-letra" id="letra-P">
-      <div class="letra-titulo">P</div>
-      <ul class="glosario-lista">
-        <li class="glosario-item">
-          <h3 class="termino-nombre">Procesamiento de Datos</h3>
-          <p class="termino-def">Conjunto de operaciones (clasificación, cálculo, resumen, almacenamiento) que transforman datos crudos en información útil y estructurada.</p>
+      <div class="titulo-letra">P</div>
+      <ul class="lista-glosario">
+        <li class="item-glosario">
+          <h3 class="nombre-termino">Procesamiento de Datos</h3>
+          <p class="definicion-termino">Conjunto de operaciones (clasificación, cálculo, resumen, almacenamiento) que transforman datos crudos en información útil y estructurada.</p>
+        </li>
+        <li class="item-glosario">
+          <h3 class="nombre-termino">PIECES</h3>
+          <p class="definicion-termino">Marco de referencia para analizar problemas desde seis perspectivas: Performance, Información, Economía, Control, Eficiencia y Servicio. Aplicado en PETPULSE para diagnosticar el control veterinario tradicional.</p>
         </li>
       </ul>
     </div>
 
     <div class="grupo-letra" id="letra-S">
-      <div class="letra-titulo">S</div>
-      <ul class="glosario-lista">
-        <li class="glosario-item">
-          <h3 class="termino-nombre">Sistema</h3>
-          <p class="termino-def">Conjunto de elementos interrelacionados que interactúan entre sí para alcanzar un objetivo común. Un sistema puede ser físico, lógico o social.</p>
+      <div class="titulo-letra">S</div>
+      <ul class="lista-glosario">
+        <li class="item-glosario">
+          <h3 class="nombre-termino">Sistema</h3>
+          <p class="definicion-termino">Conjunto de elementos interrelacionados que interactúan entre sí para alcanzar un objetivo común. Un sistema puede ser físico, lógico o social.</p>
         </li>
-        <li class="glosario-item">
-          <h3 class="termino-nombre">Sistemas de Información</h3>
-          <p class="termino-def">Conjunto organizado de recursos (personas, tecnología, procesos) que recoge, almacena, procesa y distribuye información para apoyar la toma de decisiones y el control en una organización.</p>
+        <li class="item-glosario">
+          <h3 class="nombre-termino">Sistemas de Información</h3>
+          <p class="definicion-termino">Conjunto organizado de recursos (personas, tecnología, procesos) que recoge, almacena, procesa y distribuye información para apoyar la toma de decisiones y el control en una organización.</p>
         </li>
       </ul>
     </div>
 
     <div class="grupo-letra" id="sec-abreviaturas">
-      <div class="letra-titulo">Sistemas de Información por Función</div>
-      <ul class="glosario-lista">
-        <li class="glosario-item">
-          <h3 class="termino-nombre">PO &mdash; Proceso de Operaciones</h3>
-          <p class="termino-def">Registro de operaciones. Sistema encargado de capturar, almacenar y procesar las transacciones y actividades cotidianas del negocio.</p>
+      <div class="titulo-letra">Clasificación funcional de sistemas</div>
+      <ul class="lista-glosario">
+        <li class="item-glosario">
+          <h3 class="nombre-termino">SPO / TPS — Procesamiento de Operaciones</h3>
+          <p class="definicion-termino">Registro de operaciones cotidianas. En PETPULSE: registro de mascotas, citas, historial y autenticación.</p>
         </li>
-        <li class="glosario-item">
-          <h3 class="termino-nombre">SAO &mdash; Soporte de Actividades de Oficina</h3>
-          <p class="termino-def">Gestión de documentos y agenda. Facilita la automatización de oficina, manejo de correspondencia, agenda de citas y flujos de trabajo administrativos.</p>
+        <li class="item-glosario">
+          <h3 class="nombre-termino">SIA / MIS — Sistema de Información Administrativa</h3>
+          <p class="definicion-termino">Reportes y control centralizado. En PETPULSE: reportes clínicos y generación de PDF.</p>
         </li>
-        <li class="glosario-item">
-          <h3 class="termino-nombre">SIA &mdash; Sistema de Información Administrativa</h3>
-          <p class="termino-def">Reportes gerenciales. Proporce informes periódicos y resúmenes para los niveles medios de la organización que apoyan la planificación y el control.</p>
+        <li class="item-glosario">
+          <h3 class="nombre-termino">SSD / DSS — Soporte a Decisiones</h3>
+          <p class="definicion-termino">Herramientas que apoyan decisiones complejas. En PETPULSE: alertas preventivas e identificación de razas con IA.</p>
         </li>
-        <li class="glosario-item">
-          <h3 class="termino-nombre">SSD &mdash; Sistema de Soporte a Decisiones</h3>
-          <p class="termino-def">Simulación de decisiones. Herramientas interactivas que ayudan a los gerentes a modelar escenarios y evaluar alternativas estratégicas.</p>
+        <li class="item-glosario">
+          <h3 class="nombre-termino">SAO — Soporte de Actividades de Oficina</h3>
+          <p class="definicion-termino">Gestión de documentos y agenda. Facilita automatización de oficina, manejo de correspondencia y flujos administrativos.</p>
         </li>
-        <li class="glosario-item">
-          <h3 class="termino-nombre">SSE &mdash; Sistema de Información para la Alta Dirección</h3>
-          <p class="termino-def">Dashboard ejecutivo. Panel de control que ofrece indicadores clave (KPIs) en tiempo real para que la alta dirección monitoree el desempeño organizacional.</p>
+        <li class="item-glosario">
+          <h3 class="nombre-termino">SSE — Sistema de Información para la Alta Dirección</h3>
+          <p class="definicion-termino">Dashboard ejecutivo con indicadores clave (KPIs) en tiempo real para monitoreo organizacional.</p>
         </li>
       </ul>
     </div>
@@ -383,48 +134,41 @@
   </div>
 </div>
 
-<footer>
-  <div class="footer-content">
-    <div class="footer-participants">
+<footer class="pie-pagina">
+  <div class="contenido-pie">
+    <div class="participantes-pie">
       Participantes: Luis Jiménez, Carlos Marval, Kimberly Zapata
     </div>
-    <div class="footer-unit">
-      Unidad Curricular: Sistemas de Información 1
+    <div class="unidad-pie">
+      Unidad Curricular: Sistemas de Información 1 — UNET
     </div>
   </div>
 </footer>
 
 <script>
 function buscarTermino() {
-  var input = document.getElementById('inputBuscar');
-  var filter = input.value.toUpperCase();
-  var items = document.getElementsByClassName('glosario-item');
+  var entrada = document.getElementById('entradaBuscar');
+  var filtro = entrada.value.toUpperCase();
+  var elementos = document.getElementsByClassName('item-glosario');
   var grupos = document.getElementsByClassName('grupo-letra');
 
-  for (var i = 0; i < items.length; i++) {
-    var nombre = items[i].getElementsByClassName('termino-nombre')[0];
-    var definicion = items[i].getElementsByClassName('termino-def')[0];
-    
+  for (var i = 0; i < elementos.length; i++) {
+    var nombre = elementos[i].getElementsByClassName('nombre-termino')[0];
+    var definicion = elementos[i].getElementsByClassName('definicion-termino')[0];
     if (nombre || definicion) {
-      var txtNombre = nombre.textContent || nombre.innerText;
-      var txtDef = definicion.textContent || definicion.innerText;
-      
-      if (txtNombre.toUpperCase().indexOf(filter) > -1 || txtDef.toUpperCase().indexOf(filter) > -1) {
-        items[i].style.display = "";
-      } else {
-        items[i].style.display = "none";
-      }
+      var textoNombre = nombre.textContent || nombre.innerText;
+      var textoDef = definicion.textContent || definicion.innerText;
+      elementos[i].style.display =
+        (textoNombre.toUpperCase().indexOf(filtro) > -1 ||
+         textoDef.toUpperCase().indexOf(filtro) > -1) ? "" : "none";
     }
   }
 
   for (var j = 0; j < grupos.length; j++) {
-    var itemsEnGrupo = grupos[j].getElementsByClassName('glosario-item');
+    var elementosEnGrupo = grupos[j].getElementsByClassName('item-glosario');
     var algunVisible = false;
-    for (var k = 0; k < itemsEnGrupo.length; k++) {
-      if (itemsEnGrupo[k].style.display !== "none") {
-        algunVisible = true;
-        break;
-      }
+    for (var k = 0; k < elementosEnGrupo.length; k++) {
+      if (elementosEnGrupo[k].style.display !== "none") { algunVisible = true; break; }
     }
     grupos[j].style.display = algunVisible ? "" : "none";
   }

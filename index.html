@@ -3,239 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sistemas de Información</title>
-  <style>
-    :root {
-      --primary-color: #6366f1;
-      --primary-light: #818cf8;
-      --secondary-color: #4338ca;
-      --accent-color: #f59e0b;
-      --bg-light: #f0f4ff;
-      --bg-gradient: linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 50%, #fdf2f8 100%);
-      --text-main: #334155;
-      --text-light: #64748b;
-      --border-color: #e2e8f0;
-      --card-bg: rgba(255,255,255,0.85);
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: var(--bg-gradient);
-      background-attachment: fixed;
-      color: var(--text-main);
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    header {
-      background: linear-gradient(135deg, #4338ca 0%, #6366f1 40%, #818cf8 100%);
-      color: white;
-      padding: 50px 20px 45px;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
-      position: relative;
-      overflow: hidden;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
-      animation: shimmer 8s ease-in-out infinite;
-    }
-
-    @keyframes shimmer {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(20px, -20px); }
-    }
-
-    header h1 {
-      margin: 0 0 10px 0;
-      font-size: 2.6rem;
-      letter-spacing: -0.025em;
-      position: relative;
-      z-index: 1;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.15);
-    }
-
-    header .subtitle {
-      margin: 0;
-      font-size: 1.05rem;
-      opacity: 0.9;
-      position: relative;
-      z-index: 1;
-      font-weight: 300;
-      letter-spacing: 0.02em;
-    }
-
-    nav {
-      max-width: 850px;
-      margin: 0 auto;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      text-decoration: none;
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      border: 2px solid var(--border-color);
-      color: var(--primary-color);
-      padding: 14px 28px;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 16px;
-      transition: all 0.3s;
-    }
-
-    nav a:hover {
-      background: var(--primary-color);
-      color: white;
-      border-color: var(--primary-color);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-    }
-
-    .home-content {
-      max-width: 850px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      flex: 1;
-      width: 100%;
-    }
-
-    .home-content h2 {
-      color: var(--secondary-color);
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-    }
-
-    .home-content p {
-      font-size: 17px;
-      line-height: 1.8;
-      color: var(--text-main);
-      margin-bottom: 16px;
-    }
-
-    .btn-investigacion{
-      display:inline-block;
-      margin-top:20px;
-      padding:14px 28px;
-      background:var(--primary-color);
-      color:white;
-      text-decoration:none;
-      border-radius:12px;
-      font-weight:600;
-      transition:.3s;
-    }
-
-    .btn-investigacion:hover{
-      background:var(--secondary-color);
-      transform:translateY(-2px);
-      box-shadow:0 4px 12px rgba(99,102,241,.3);
-    }
-
-    footer {
-      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
-      color: #f1f5f9;
-      padding: 40px 20px;
-      text-align: center;
-      width: 100%;
-      margin-top: auto;
-    }
-
-    .footer-content {
-      max-width: 850px;
-      margin: 0 auto;
-    }
-
-    .footer-participants {
-      margin-bottom: 15px;
-      font-weight: 500;
-      font-size: 16px;
-    }
-
-    .footer-unit {
-      color: #a5b4fc;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    @media (max-width: 600px) {
-      header { padding: 35px 15px 30px; }
-      header h1 { font-size: 1.8rem; }
-      nav a { padding: 12px 18px; font-size: 14px; }
-    }
-  </style>
+  <title>PETPULSE — Sistemas de Información I</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-<header>
+<header class="encabezado-sitio">
   <h1>Sistemas de Información</h1>
-  <p class="subtitle">Unidad Curricular I &mdash; Proyecto PETPULSE</p>
+  <p class="subtitulo">Unidad Curricular I — Proyecto PETPULSE — UNET</p>
 </header>
 
-<nav>
-  <a href="index.html">Inicio</a>
+<nav class="navegacion-sitio">
+  <a href="index.html" class="activo">Inicio</a>
   <a href="glosario.html">Glosario</a>
   <a href="blog.html">Blog</a>
-
-  <a href="investigacion.html">Investigación, Modelado y Documentación</a>
-
+  <a href="investigacion.html">Investigación y Modelado</a>
 </nav>
 
-<div class="home-content">
+<div class="contenido-pagina">
 
-  <h2>Bienvenidos</h2>
-
-  <p>Este sitio contiene el glosario de términos y las publicaciones del blog del proyecto PETPULSE, desarrollado para la materia de Sistemas de Información I.</p>
-
-  <p>PETPULSE es una aplicación móvil diseñada para ayudar a los dueños de mascotas a organizar y gestionar el historial de salud de sus mascotas de forma digital.</p>
-
- 
-
-  <hr style="margin:40px 0;border:none;border-top:2px solid #e2e8f0;">
-
-  <h2>Investigación, Modelado y Documentación</h2>
-
-  <p>
-    En esta sección se presenta la documentación del desarrollo del proyecto
-    PETPULSE siguiendo las actividades propuestas para la asignatura
-    Sistemas de Información I. Aquí se recopilan las investigaciones,
-    modelos y estrategias utilizadas durante el proceso de construcción del sistema.
+  <h2>Bienvenida</h2>
+  <p class="introduccion">
+    Este sitio documenta el proyecto <strong>PETPULSE</strong> para la materia
+    de Sistemas de Información I. Contiene el glosario de términos,
+    publicaciones del equipo y la documentación metodológica del sistema.
   </p>
 
   <p>
-    Cada integrante del equipo desarrollará uno de los apartados solicitados,
-    permitiendo documentar de manera organizada cada fase del proyecto.
+    <strong>PETPULSE</strong> es una aplicación web de página única (SPA)
+    responsiva orientada al control médico y preventivo de mascotas. Integra
+    historial clínico digital, alertas de salud, agendamiento de citas con
+    selección de clínica mediante Google Maps e identificación de razas con
+    inteligencia artificial (Google Gemini).
   </p>
 
-  <a class="btn-investigacion" href="investigacion.html">
-    Ver Investigación
-  </a>
+  <div class="etiquetas-tecnologia">
+    <span class="etiqueta-tecnologia">React</span>
+    <span class="etiqueta-tecnologia">Node.js</span>
+    <span class="etiqueta-tecnologia">Oracle Database</span>
+    <span class="etiqueta-tecnologia">AWS S3</span>
+    <span class="etiqueta-tecnologia">Google Gemini</span>
+    <span class="etiqueta-tecnologia">Google Maps</span>
+  </div>
+
+  <div class="rejilla-inicio">
+    <a class="tarjeta-enlace" href="investigacion.html">
+      <h3>Investigación y Modelado</h3>
+      <p>Documentación de las fases de definición, modelización, diccionario de proyecto y estrategia de desarrollo.</p>
+    </a>
+    <a class="tarjeta-enlace" href="blog.html">
+      <h3>Blog del Proyecto</h3>
+      <p>Publicaciones del equipo sobre el proceso de análisis y levantamiento de requerimientos.</p>
+    </a>
+    <a class="tarjeta-enlace" href="glosario.html">
+      <h3>Glosario</h3>
+      <p>Definiciones de términos de Sistemas de Información y clasificación funcional de sistemas.</p>
+    </a>
+  </div>
+
+  <div class="tarjeta">
+    <h3>Fases del proyecto</h3>
+    <p>La documentación oficial sigue la metodología solicitada por la asignatura:</p>
+    <ul>
+      <li><strong>Fase 1 — Definición:</strong> DCA, PIECES, investigación de hechos, casos de uso y requerimientos.</li>
+      <li><strong>Fase 2 — Modelización:</strong> DER (3FN), DFD (Nivel 0 y 1), Diagrama de Conexión de Puestos.</li>
+      <li><strong>Fase 3 — Control:</strong> Diccionario de Proyecto (datos, estructuras, flujos y procesos).</li>
+      <li><strong>Fase 4 — Desarrollo:</strong> Prototipado RAD en tres iteraciones.</li>
+    </ul>
+    <a class="boton-primario" href="investigacion.html">Ver documentación completa</a>
+  </div>
 
 </div>
 
-<footer>
-  <div class="footer-content">
-    <div class="footer-participants">
+<footer class="pie-pagina">
+  <div class="contenido-pie">
+    <div class="participantes-pie">
       Participantes: Luis Jiménez, Carlos Marval, Kimberly Zapata
     </div>
-    <div class="footer-unit">
-      Unidad Curricular: Sistemas de Información 1
+    <div class="unidad-pie">
+      Unidad Curricular: Sistemas de Información 1 — UNET
     </div>
   </div>
 </footer>

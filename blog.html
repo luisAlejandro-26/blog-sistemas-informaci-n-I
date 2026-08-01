@@ -3,343 +3,105 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog - Sistemas de Información</title>
-  <style>
-    :root {
-      --primary-color: #6366f1;
-      --primary-light: #818cf8;
-      --secondary-color: #4338ca;
-      --accent-color: #f59e0b;
-      --bg-light: #f0f4ff;
-      --bg-gradient: linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 50%, #fdf2f8 100%);
-      --text-main: #334155;
-      --text-light: #64748b;
-      --border-color: #e2e8f0;
-      --card-bg: rgba(255,255,255,0.85);
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: var(--bg-gradient);
-      background-attachment: fixed;
-      color: var(--text-main);
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    header {
-      background: linear-gradient(135deg, #4338ca 0%, #6366f1 40%, #818cf8 100%);
-      color: white;
-      padding: 50px 20px 45px;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
-      position: relative;
-      overflow: hidden;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
-      animation: shimmer 8s ease-in-out infinite;
-    }
-
-    @keyframes shimmer {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(20px, -20px); }
-    }
-
-    header h1 {
-      margin: 0 0 10px 0;
-      font-size: 2.6rem;
-      letter-spacing: -0.025em;
-      position: relative;
-      z-index: 1;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.15);
-    }
-
-    header .subtitle {
-      margin: 0;
-      font-size: 1.05rem;
-      opacity: 0.9;
-      position: relative;
-      z-index: 1;
-      font-weight: 300;
-      letter-spacing: 0.02em;
-    }
-
-    nav {
-      max-width: 850px;
-      margin: 0 auto;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      text-decoration: none;
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      border: 2px solid var(--border-color);
-      color: var(--primary-color);
-      padding: 14px 28px;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 16px;
-      transition: all 0.3s;
-    }
-
-    nav a:hover, nav a.active {
-      background: var(--primary-color);
-      color: white;
-      border-color: var(--primary-color);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-    }
-
-    .blog-container {
-      max-width: 850px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      flex: 1;
-      width: 100%;
-    }
-
-    .blog-card {
-      background: #f1f5f9;
-      border-radius: 14px;
-      padding: 28px 30px;
-      margin-bottom: 24px;
-      border-left: 5px solid var(--primary-color);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-
-    .blog-card h3 {
-      margin: 0 0 12px 0;
-      font-size: 20px;
-      color: var(--secondary-color);
-    }
-
-    .blog-card h4 {
-      margin: 20px 0 10px 0;
-      color: var(--secondary-color);
-    }
-
-    .blog-card h5 {
-      margin: 16px 0 8px 0;
-      color: var(--text-main);
-    }
-
-    .blog-card p {
-      margin: 0 0 12px 0;
-      font-size: 16px;
-      line-height: 1.7;
-      color: var(--text-main);
-    }
-
-    .blog-card ul, .blog-card ol {
-      margin: 10px 0 16px 20px;
-      line-height: 1.8;
-    }
-
-    .blog-card li {
-      margin-bottom: 6px;
-    }
-
-    .blog-card .autor {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--primary-color);
-      text-align: right;
-      margin-top: 14px;
-    }
-
-    .blog-card .autor span {
-      font-weight: 400;
-      color: var(--text-light);
-    }
-
-    footer {
-      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
-      color: #f1f5f9;
-      padding: 40px 20px;
-      text-align: center;
-      width: 100%;
-      margin-top: auto;
-    }
-
-    .footer-content {
-      max-width: 850px;
-      margin: 0 auto;
-    }
-
-    .footer-participants {
-      margin-bottom: 15px;
-      font-weight: 500;
-      font-size: 16px;
-    }
-
-    .footer-unit {
-      color: #a5b4fc;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    @media (max-width: 600px) {
-      header { padding: 35px 15px 30px; }
-      header h1 { font-size: 1.8rem; }
-      .blog-card { padding: 16px; }
-    }
-  </style>
+  <title>Blog — PETPULSE</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-<header>
+<header class="encabezado-sitio">
   <h1>Blog del Proyecto</h1>
-  <p class="subtitle">Unidad Curricular I &mdash; PETPULSE</p>
+  <p class="subtitulo">Reflexiones del equipo — PETPULSE</p>
+  <span class="insignia">Sistemas de Información I</span>
 </header>
 
-<nav>
+<nav class="navegacion-sitio">
   <a href="index.html">Inicio</a>
   <a href="glosario.html">Glosario</a>
-  <a href="blog.html">Blog</a>
-
-  <a href="investigacion.html">Investigación, Modelado y Documentación</a>
+  <a href="blog.html" class="activo">Blog</a>
+  <a href="investigacion.html">Investigación y Modelado</a>
 </nav>
 
-<div class="blog-container">
+<div class="contenido-pagina">
 
-  <div class="blog-card">
-    <h3>¿Cómo entendimos qué necesitaba PETPULSE? Así lo hicimos.</h3>
-    <p>Antes de escribir una sola línea de código, teníamos que responder una pregunta básica: ¿qué necesita exactamente el usuario? Para eso aplicamos dos técnicas que aprendimos en clase y que, honestamente, cambiaron la forma en que pensamos el proyecto.</p>
-    <h4>Primero hablamos con la gente — La Entrevista</h4>
-    <p>La idea fue simple: en vez de asumir qué problemas tiene un dueño de mascota, fuimos a preguntarles directamente. Diseñamos una entrevista estructurada y la aplicamos a tres perfiles distintos de usuarios.</p>
-    <p>Lo que encontramos nos sorprendió por lo obvio que era y lo poco que se habla de ello: la gente pierde los carnets de vacunas todo el tiempo. No es descuido, es que el papel no funciona para esto.</p>
-    <p>Algunos hallazgos concretos:</p>
-    <ul>
-      <li>María, ejecutiva de 34 años, nos dijo que lleva a su perro al veterinario y nunca recuerda cuándo fue la última vacuna.</li>
-      <li>José, que tiene 4 mascotas, tiene cuatro carnets distintos que constantemente confunde.</li>
-      <li>Andrea, dueña primeriza, simplemente no sabe qué vacunas son obligatorias ni cuándo aplicarlas.</li>
-    </ul>
-    <p>Esas tres historias nos dieron los tres módulos principales de PETPULSE: historial digital, panel multimascotas y guía con IA para primerizos.</p>
-    <h4>Luego lo pusimos en papel — Los Casos de Uso</h4>
-    <p>Una vez que sabíamos qué necesitaban los usuarios, teníamos que traducirlo en algo que el equipo pudiera programar sin adivinar. Para eso usamos los Casos de Uso, una técnica que básicamente te obliga a describir paso a paso cómo un usuario interactúa con el sistema.</p>
-    <p>El más importante que documentamos fue "Agregar recordatorio de vacuna" — porque conecta exactamente el problema que encontramos en las entrevistas con la solución que construimos:</p>
-    <ol>
-      <li>El usuario abre el calendario en PETPULSE</li>
-      <li>Toca "+ Agregar recordatorio"</li>
-      <li>Selecciona el tipo, la mascota y la fecha</li>
-      <li>Guarda — y el sistema se encarga del resto: actualiza el calendario y programa la notificación automática</li>
-    </ol>
-    <p>Simple en papel, pero ese flujo eliminó horas de debate en el equipo sobre cómo debía funcionar esa pantalla.</p>
-    <p>El otro caso de uso que documentamos fue la identificación de raza con IA — donde el usuario toma una foto de su mascota y el sistema le dice la raza y le genera un plan de vacunación personalizado. Este nos tomó más tiempo de diseñar porque involucra un actor externo (la API de IA), pero el resultado justificó el esfuerzo.</p>
-    <h4>¿Qué aprendimos de todo esto?</h4>
-    <p>Que las técnicas de requerimientos no son burocracia académica — son la diferencia entre construir lo que el usuario necesita y construir lo que el equipo asume. Las entrevistas nos dieron el problema real. Los casos de uso nos dieron el mapa para resolverlo. PETPULSE existe como existe gracias a ese orden.</p>
-    <div class="autor"><span>Autor:</span> Carlos Marval</div>
+  <h2>Publicaciones</h2>
+  <p class="intro">
+    Entradas narrativas del equipo sobre el proceso de análisis. La
+    documentación técnica oficial — requerimientos, modelos, diccionario y
+    procesos — está centralizada en
+    <a href="investigacion.html">Investigación y Modelado</a>.
+  </p>
+
+  <div class="tarjeta-blog">
+    <h3>¿Cómo entendimos qué necesitaba PETPULSE?</h3>
+    <p class="metadatos">Técnicas: Entrevistas + Casos de Uso · Fase 1</p>
+    <p>
+      Antes de escribir código, teníamos que responder una pregunta básica:
+      ¿qué necesita exactamente el usuario? Aplicamos entrevistas estructuradas
+      y casos de uso siguiendo el marco de Whitten &amp; Bentley.
+    </p>
+    <p>
+      Las entrevistas con María (ejecutiva sin tiempo), José (veterinario) y
+      Andrea (dueña primeriza) nos revelaron tres problemas concretos: pérdida
+      de carnets, confusión con múltiples mascotas y desconocimiento de
+      calendarios de vacunación. Esos hallazgos se tradujeron directamente en
+      los módulos de historial digital, panel multimascotas y guía con IA.
+    </p>
+    <p>
+      El caso de uso más representativo fue <em>Agregar recordatorio de
+      vacuna</em>: un flujo de 5 pasos que eliminó horas de debate en el
+      equipo sobre cómo debía funcionar esa pantalla.
+    </p>
+    <a class="enlace-documento" href="investigacion.html#fase-1">→ Ver Fase 1 completa: entrevistas, casos de uso y requerimientos</a>
+    <div class="autor">Carlos Marval</div>
   </div>
 
-  <div class="blog-card">
-    <h3>Técnica 2: Modelado de Requerimientos con Casos de Uso</h3>
-    <h4>¿Qué son los casos de uso?</h4>
-    <p>Según Whitten &amp; Bentley, los casos de uso son una técnica de modelado de requerimientos que describe las interacciones entre los actores externos y el sistema de información. Permiten representar de forma clara y sin ambigüedades qué hace el sistema, para quién lo hace y cómo responde ante las acciones del usuario.</p>
-    <h5>¿Por qué elegimos esta técnica?</h5>
-    <p>Dado que PETPULSE será una aplicación interactiva que integrará módulos de registro médico, alertas automáticas de salud y consumo de APIs de Inteligencia Artificial, era indispensable modelar sin ambigüedades cómo interactuará el usuario con cada módulo del sistema. El modelado con casos de uso nos permite estructurar los requerimientos funcionales de forma visual y narrativa.</p>
-    <h5>Los actores del sistema</h5>
-    <ul>
-      <li><strong>Dueño de mascota (Principal):</strong> Usuario que registra mascotas, agrega recordatorios, consulta historiales y usa la identificación por IA.</li>
-      <li><strong>Sistema de Inteligencia Artificial (Secundario):</strong> Procesa fotografías de mascotas para identificar la raza y generar recomendaciones de cuidado.</li>
-      <li><strong>Sistema de Notificaciones (Externo):</strong> Envía alertas automáticas al dispositivo móvil del usuario sobre fechas importantes.</li>
-    </ul>
-    <h5>Casos de uso identificados</h5>
-    <p>A partir de los requerimientos obtenidos en las entrevistas, se identificaron los siguientes casos de uso para el MVP de PETPULSE:</p>
-    <ul>
-      <li>Registrar usuario y mascota.</li>
-      <li>Ver historial médico de la mascota.</li>
-      <li>Agregar recordatorio de vacuna o cita.</li>
-      <li>Ver calendario de eventos y recordatorios.</li>
-      <li>Registrar vacuna o desparasitación.</li>
-      <li>Identificar raza de mascota con IA.</li>
-      <li>Recibir notificación automática de fecha próxima.</li>
-    </ul>
-    <h5>¿Cómo se ve el flujo del sistema?</h5>
-    <p>El actor principal, el <strong>Dueño de Mascota</strong>, interactúa directamente con los siete casos de uso del sistema. Además, dos de estas funcionalidades requieren integración con servicios externos:</p>
-    <ul>
-      <li><strong>Identificar raza con IA</strong> se comunica con el Sistema de Inteligencia Artificial para analizar la fotografía de la mascota y generar recomendaciones.</li>
-      <li><strong>Recibir notificación automática</strong> se conecta con el Sistema de Notificaciones para enviar recordatorios al dispositivo móvil del usuario.</li>
-    </ul>
-    <p>Este modelado permitió visualizar de forma clara cómo interactúan los usuarios y los servicios externos con PETPULSE, facilitando la organización de las funcionalidades que formarán parte del MVP.</p>
-    <div class="autor"><span>Autor:</span> Luis Jiménez</div>
+  <div class="tarjeta-blog">
+    <h3>Modelado de requerimientos con casos de uso</h3>
+    <p class="metadatos">Técnica: Casos de Uso · Fase 1</p>
+    <p>
+      PETPULSE integrará registro médico, alertas automáticas y consumo de
+      APIs de IA. Era indispensable modelar sin ambigüedades cómo interactuará
+      el usuario con cada módulo. Identificamos 9 casos de uso para el MVP,
+      incluyendo el agendamiento de citas con selección de clínica en Google
+      Maps y la identificación de raza con <code>5.0 Asistencia PetIA</code>.
+    </p>
+    <p>
+      Dos funcionalidades requieren actores externos: la IA (Google Gemini)
+      para clasificación de razas, y el sistema de notificaciones para
+      recordatorios automáticos.
+    </p>
+    <a class="enlace-documento" href="investigacion.html#fase-1">→ Ver catálogo de casos de uso y requerimientos</a>
+    <div class="autor">Luis Jiménez</div>
   </div>
 
-  <div class="blog-card">
-    <h3>Ejemplo de caso de uso: Agregar recordatorio de vacuna</h3>
-    <p>Este caso de uso fue seleccionado por ser el más representativo del valor central del sistema: conecta directamente el problema detectado en las entrevistas con la solución tecnológica.</p>
-    <h5>Actor principal</h5>
-    <p>Dueño de mascota.</p>
-    <h5>Antes de comenzar</h5>
-    <p>El usuario tiene sesión iniciada y al menos una mascota registrada.</p>
-    <h5>¿Cómo funciona?</h5>
-    <ol>
-      <li>Abre la pantalla de Calendario.</li>
-      <li>Toca <strong>+ Agregar recordatorio</strong>.</li>
-      <li>Se despliega el formulario.</li>
-      <li>Selecciona el tipo: Vacuna.</li>
-      <li>Selecciona la mascota.</li>
-      <li>Escribe una descripción.</li>
-      <li>Selecciona la fecha.</li>
-      <li>Toca <strong>Guardar recordatorio</strong>.</li>
-      <li>El sistema confirma y actualiza el calendario con un indicador de color.</li>
-    </ol>
-    <h5>¿Qué pasa si ocurre un error?</h5>
-    <p>Si selecciona una fecha anterior a la actual, el sistema muestra un mensaje de error y solicita una fecha futura.</p>
-    <h5>Resultado</h5>
-    <p>El recordatorio queda registrado y se programa la notificación automática.</p>
-    <hr>
-    <h4>Ejemplo de caso de uso: Identificar raza de mascota con Inteligencia Artificial</h4>
-    <h5>Actores involucrados</h5>
-    <ul>
-      <li><strong>Dueño de mascota (Principal).</strong></li>
-      <li><strong>Sistema de IA (Secundario).</strong></li>
-    </ul>
-    <h5>¿Cómo funciona?</h5>
-    <ol>
-      <li>Accede a la función de identificación.</li>
-      <li>Toma una fotografía de su mascota.</li>
-      <li>El sistema envía la imagen al motor de IA.</li>
-      <li>La IA detecta la raza con un porcentaje de confianza.</li>
-      <li>PETPULSE muestra el resultado y sus características.</li>
-      <li>El sistema genera automáticamente el calendario de vacunación recomendado.</li>
-      <li>El usuario guarda esta información.</li>
-    </ol>
-    <h5>Resultado</h5>
-    <p>La raza queda registrada en el perfil y se genera un plan de cuidado personalizado.</p>
-    <hr>
-    <h4>Conclusión</h4>
-    <p>La aplicación combinada de estas dos técnicas del ciclo de vida del desarrollo de sistemas — la Entrevista y el Modelado con Casos de Uso — ha permitido al equipo construir una base sólida, justificada y orientada al usuario real para el proyecto PETPULSE. Por un lado, las entrevistas permitieron empatizar con el usuario final y validar que la desorganización es un problema real. Por otro lado, el modelado con casos de uso tradujo esos hallazgos en especificaciones técnicas claras, eliminando ambigüedades. Tal como lo plantean Whitten &amp; Bentley, estas técnicas son complementarias por naturaleza y garantizan que el MVP de PETPULSE resuelva efectivamente el caos operativo en la gestión de la salud animal.</p>
-    <div class="autor"><span>Autor:</span> Kimberly Zapata</div>
+  <div class="tarjeta-blog">
+    <h3>De las entrevistas al blueprint: lecciones del análisis</h3>
+    <p class="metadatos">Reflexión metodológica · Fases 1–2</p>
+    <p>
+      Las técnicas de requerimientos no son burocracia académica: son la
+      diferencia entre construir lo que el usuario necesita y construir lo que
+      el equipo asume. Las entrevistas nos dieron el problema real; los casos
+      de uso nos dieron el mapa; el DER, el DFD y el Diagrama de Conexión de
+      Puestos nos dieron el blueprint para programar sin adivinar.
+    </p>
+    <p>
+      La regla del diccionario de proyecto — si no está documentado, no
+      existe — nos obligó a mantener coherencia entre los 6 procesos del DFD,
+      las 5 tablas del DER y los 5 almacenes de datos.
+    </p>
+    <a class="enlace-documento" href="investigacion.html">→ Ver documentación completa del proyecto</a>
+    <div class="autor">Kimberly Zapata</div>
   </div>
 
 </div>
 
-<footer>
-  <div class="footer-content">
-    <div class="footer-participants">
+<footer class="pie-pagina">
+  <div class="contenido-pie">
+    <div class="participantes-pie">
       Participantes: Luis Jiménez, Carlos Marval, Kimberly Zapata
     </div>
-    <div class="footer-unit">
-      Unidad Curricular: Sistemas de Información 1
+    <div class="unidad-pie">
+      Unidad Curricular: Sistemas de Información 1 — UNET
     </div>
   </div>
 </footer>
