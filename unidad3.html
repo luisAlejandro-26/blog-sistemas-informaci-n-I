@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>III Unidad — Análisis y Diseño de Sistemas — PETPULSE</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="encabezado-sitio">
+  <h1>PETPULSE</h1>
+  <p class="subtitulo">Sistemas de Información I — UNET</p>
+  <span class="insignia">III Unidad — Análisis y Diseño de Sistemas</span>
+</header>
+
+<nav class="navegacion-sitio">
+  <a href="index.html">Inicio</a>
+  <a href="glosario.html">Glosario</a>
+  <a href="blog.html">Blog</a>
+  <a href="investigacion.html">Investigación y Modelado</a>
+  <a href="unidad3.html" class="activo">III Unidad</a>
+</nav>
+
+<div class="contenido-pagina">
+
+  <h2>Estructura de la III Unidad</h2>
+  <p class="intro">
+    Por medio de esta estructura se relaciona la teoría formal de
+    ingeniería de sistemas con el desarrollo práctico de
+    <strong>PETPULSE</strong>, conforme al esquema solicitado por la
+    cátedra y al marco de <em>Whitten, Bentley y Barlow</em>.
+  </p>
+
+  <nav class="navegacion-fases" aria-label="Módulos de la III Unidad">
+    <a href="#modulo-1">
+      <span class="etiqueta-fase">Módulo I</span>
+      <span class="titulo-fase">Marco de Análisis de Sistemas</span>
+    </a>
+    <a href="#modulo-2">
+      <span class="etiqueta-fase">Módulo II</span>
+      <span class="titulo-fase">Marco de Diseño e Integración de Sistemas</span>
+    </a>
+  </nav>
+
+  <!-- ======================= MÓDULO I ======================= -->
+
+  <div class="tarjeta" id="modulo-1">
+    <h3><span class="numero-seccion">1</span> Definición Contextualizada del Análisis de Sistemas</h3>
+
+    <h4>Fundamentación Teórica</h4>
+    <p>
+      El análisis de sistemas es la fase del ciclo de vida de desarrollo
+      de sistemas (CVDS) en la que se estudia el problema de negocio
+      —sin asumir todavía una solución técnica— con el fin de identificar
+      los datos, los procesos, los sucesos y las condiciones que un
+      futuro sistema deberá soportar. Es el puente entre "qué necesita el
+      negocio" y "qué debe construirse", y su calidad determina
+      directamente la calidad del diseño posterior: un modelo de datos o
+      de procesos mal analizado se arrastra como defecto hasta la
+      implementación.
+    </p>
+
+    <h4>Aplicación en el Proyecto</h4>
+    <p>
+      En PETPULSE, el análisis partió de un problema real y vivido por el
+      propio equipo (dueños de mascotas que pierden el carnet de
+      vacunación o no recuerdan el historial médico al cambiar de
+      veterinario). Antes de elegir React, Node.js o Supabase, el equipo
+      documentó el problema mediante DCA, PIECES, entrevistas y casos de
+      uso (ver <a href="investigacion.html#fase-1">Fase 1 — Investigación
+      de Hechos</a>), y solo después tradujo esos hallazgos en un modelo
+      de datos (DER) y de procesos (DFD) — respetando la separación entre
+      análisis (qué) y diseño (cómo).
+    </p>
+  </div>
+
+  <div class="tarjeta" id="pieces">
+    <h3><span class="numero-seccion">2</span> Resolución de Problemas mediante la Estructura PIECES</h3>
+
+    <h4>Fundamentación Teórica</h4>
+    <p>
+      PIECES es un marco de diagnóstico que clasifica cualquier problema
+      de un sistema en seis categorías: <strong>P</strong>erformance
+      (rendimiento), <strong>I</strong>nformation (información),
+      <strong>E</strong>conomics (economía), <strong>C</strong>ontrol/Security
+      (control y seguridad), <strong>E</strong>fficiency (eficiencia) y
+      <strong>S</strong>ervice (servicio). Se usa para comparar, categoría
+      por categoría, la situación "sin sistema" contra la situación "con
+      el sistema propuesto", de modo que cada mejora quede justificada y
+      no sea solo una lista de funciones.
+    </p>
+
+    <h4>Matriz de Aplicación Práctica</h4>
+    <div class="contenedor-tabla">
+      <table class="tabla-datos">
+        <thead><tr><th>Dimensión PIECES</th><th>Situación Inicial (Sin el Sistema)</th><th>Situación Objetivo (Con PETPULSE)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>P</strong> — Rendimiento</td>
+              <td>Buscar el historial médico de la mascota (carnet físico, notas sueltas) toma minutos y depende de tener el papel a mano.</td>
+              <td>Historial clínico centralizado y consultable al instante desde el panel de la mascota.</td></tr>
+          <tr><td><strong>I</strong> — Información</td>
+              <td>Datos incompletos, ilegibles o desactualizados en carnets y notas en papel; sin registro de qué vacunas ya se aplicaron.</td>
+              <td>Registros estructurados (tabla <code>EVENTO_SALUD</code> en Supabase) con tipo, título, fecha y estado por evento.</td></tr>
+          <tr><td><strong>E</strong> — Economía</td>
+              <td>Citas y tratamientos olvidados que derivan en gastos evitables (re-vacunación, complicaciones por desparasitación tardía).</td>
+              <td>Recordatorios automáticos que reducen citas perdidas y tratamientos incompletos.</td></tr>
+          <tr><td><strong>C</strong> — Control y Seguridad</td>
+              <td>Sin respaldo: si el carnet físico se pierde, la información desaparece por completo.</td>
+              <td>Autenticación de usuarios y datos persistidos en Supabase, con respaldo en la nube.</td></tr>
+          <tr><td><strong>E</strong> — Eficiencia</td>
+              <td>El dueño repite información a cada veterinario nuevo; el veterinario re-registra datos ya existentes.</td>
+              <td>Historial reutilizable y compartible desde el propio dispositivo del dueño.</td></tr>
+          <tr><td><strong>S</strong> — Servicios</td>
+              <td>Dueños primerizos desconocen calendarios de vacunación según raza o especie.</td>
+              <td>Asistencia PetIA (Gemini) que identifica la raza y sugiere calendario de cuidados.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="tarjeta" id="fases-analisis">
+    <h3><span class="numero-seccion">3</span> Fases del Análisis de Sistemas y Bloques Elementales</h3>
+    <p>
+      Se documentan aquí las tres fases de análisis, articuladas con los
+      cuatro bloques elementales de todo sistema de información:
+      <strong>Datos, Procesos, Interfaces</strong> y
+      <strong>Ubicación/Red</strong>.
+    </p>
+
+    <h4>A. Fase de Inspección (Reconocimiento del Alcance)</h4>
+    <ul>
+      <li><strong>Objetivos y Funciones:</strong> delimitar el alcance del
+        proyecto (enfoque B2C dueño–mascota, sin contacto directo con
+        clínicas en el MVP) y evaluar la viabilidad preliminar del stack
+        propuesto.</li>
+      <li><strong>Actividades Realizadas:</strong> reuniones iniciales del
+        equipo, distribución de responsabilidades (Luis: liderazgo y
+        backend; Carlos: requerimientos y frontend Mobile; Kimberly:
+        frontend Tablet), definición de restricciones tecnológicas y
+        fronteras del sistema.</li>
+      <li><strong>Articulación con Bloques Elementales:</strong>
+        identificación de los actores principales —Interfaces— (dueño de
+        mascota, Sistema de IA Gemini, sistema de notificaciones) y de las
+        entidades clave del negocio —Datos— (usuario, mascota, evento de
+        salud).</li>
+      <li><strong>Técnicas y Herramientas Utilizadas:</strong> diagrama de
+        contexto del sistema (DFD Nivel 0), matriz de viabilidad.</li>
+    </ul>
+
+    <h4>B. Fase de Estudio (Análisis del Sistema Actual o Proceso Manual)</h4>
+    <ul>
+      <li><strong>Objetivos y Funciones:</strong> comprender las causas
+        raíz del "proceso manual" actual —carnet físico y memoria del
+        dueño— y sus cuellos de botella.</li>
+      <li><strong>Actividades Realizadas:</strong> observación directa (el
+        propio equipo es dueño de mascotas), entrevistas estructuradas a
+        tres perfiles (María, José y Andrea — ver
+        <a href="investigacion.html#fase-1">Fase 1</a>), levantamiento del
+        flujo operativo actual de control veterinario.</li>
+      <li><strong>Articulación con Bloques Elementales:</strong> mapeo de
+        cómo fluyen hoy los datos de salud de la mascota (Procesos) entre
+        dueño, veterinario y carnet físico, sin ningún nodo de Red que los
+        respalde.</li>
+      <li><strong>Técnicas y Herramientas Utilizadas:</strong> entrevistas,
+        observación directa, diagramas de causa-efecto sobre los hallazgos
+        de PIECES.</li>
+    </ul>
+
+    <h4>C. Fase de Definición (Especificación de Requerimientos)</h4>
+    <ul>
+      <li><strong>Objetivos y Funciones:</strong> establecer las
+        capacidades que PETPULSE debe proporcionar como sistema
+        informático.</li>
+      <li><strong>Actividades Realizadas:</strong> redacción y
+        priorización de requerimientos funcionales (identificación de raza
+        con IA, alertas, historial digital, agendamiento con Google Maps,
+        reportes PDF, autenticación) y no funcionales (tiempo de carga,
+        cifrado de datos sensibles, responsividad, integridad referencial
+        con <code>ON DELETE CASCADE</code>).</li>
+      <li><strong>Articulación con Bloques Elementales:</strong> modelado
+        preliminar de datos del negocio (entidades <code>USUARIOS</code>,
+        <code>MASCOTAS</code>, <code>EVENTO_SALUD</code>, etc.) y de la
+        lógica de procesos requerida (los 6 procesos del DFD Nivel 1).</li>
+      <li><strong>Técnicas y Herramientas Utilizadas:</strong> casos de
+        uso, diccionario de datos preliminar, wireframes de baja fidelidad
+        en Figma.</li>
+    </ul>
+  </div>
+
+  <!-- ======================= MÓDULO II ======================= -->
+
+  <div class="tarjeta" id="modulo-2">
+    <h3><span class="numero-seccion">4</span> Definición del Diseño de Sistemas</h3>
+
+    <h4>Fundamentación Teórica</h4>
+    <p>
+      El diseño de sistemas es la transición desde los requerimientos
+      lógicos (qué debe hacer el sistema) hacia la especificación física
+      de la solución de software (cómo se construye): elegir tecnologías,
+      definir el esquema físico de la base de datos, diseñar las pantallas
+      y decidir dónde se ejecuta cada componente en la red.
+    </p>
+
+    <h4>Aplicación en el Proyecto</h4>
+    <p>
+      PETPULSE usa una arquitectura <strong>cliente/servidor multicapas
+      distribuida en la nube</strong>: el frontend (React + Vite +
+      TypeScript, dividido por breakpoint en versiones
+      Desktop/Tablet/Mobile mediante el hook <code>useBreakpoint()</code>)
+      consume una API REST construida sobre Next.js; la persistencia de
+      datos y el almacenamiento de imágenes residen en
+      <strong>Supabase</strong> (Postgres + Storage); la inferencia de IA
+      para identificación de razas y el chat contextual se delegan a
+      <strong>Google Gemini</strong> (modelo
+      <code>gemini-3.6-flash</code>); y la ubicación de clínicas usa la
+      API de Google Maps. Se eligió esta arquitectura por separar
+      claramente presentación, lógica de negocio y persistencia, y por
+      permitir que cada integrante trabajara su capa de frontend sin
+      bloquear a los demás.
+    </p>
+  </div>
+
+  <div class="tarjeta" id="fases-diseno">
+    <h3><span class="numero-seccion">5</span> Fases del Diseño de Sistemas y Bloques Elementales</h3>
+
+    <h4>A. Fase de Selección</h4>
+    <ul>
+      <li><strong>Objetivos y Funciones:</strong> evaluar alternativas
+        tecnológicas para implementar el sistema, en particular el motor
+        de base de datos.</li>
+      <li><strong>Actividades Realizadas:</strong> comparación entre
+        Oracle Database (opción inicialmente contemplada) y
+        Supabase/PostgreSQL. El equipo migró de Oracle a Supabase por
+        problemas de peso y consumo de RAM de Oracle para un proyecto
+        académico de este alcance, priorizando un gestor más liviano, con
+        panel administrativo integrado y sin costo de licenciamiento.</li>
+      <li><strong>Articulación con Bloques Elementales:</strong>
+        selección de una herramienta (Supabase) capaz de soportar el
+        volumen de Datos del DER y la velocidad de los Procesos 1.0–6.0
+        sin sobrecargar los recursos del equipo.</li>
+      <li><strong>Técnicas y Herramientas Utilizadas:</strong> matriz de
+        evaluación técnico-económica (Oracle vs. Supabase/PostgreSQL),
+        pruebas de concepto sobre el nivel gratuito de cada API externa
+        (Gemini, Google Maps).</li>
+    </ul>
+
+    <h4>B. Fase de Adquisición</h4>
+    <ul>
+      <li><strong>Objetivos y Funciones:</strong> definir los
+        componentes, APIs y librerías externas que se integran al sistema
+        sin construirlos desde cero.</li>
+      <li><strong>Actividades Realizadas:</strong> selección de APIs de
+        terceros — Google Gemini (identificación de raza y chat), Google
+        Maps (selección de clínica) — y de librerías de interfaz para las
+        tres versiones de frontend.</li>
+      <li><strong>Articulación con Bloques Elementales:</strong>
+        configuración de la comunicación (Red/Ubicación) entre el backend
+        Next.js y cada servicio externo, y del bucket de Storage de
+        Supabase (<code>chat-images</code>) para las imágenes del chat de
+        IA.</li>
+      <li><strong>Técnicas y Herramientas Utilizadas:</strong> gestores de
+        dependencias (npm), consumo de servicios REST, revisión de cuotas
+        gratuitas de las APIs externas.</li>
+    </ul>
+
+    <h4>C. Fase de Diseño e Integración (Especificación Física)</h4>
+    <p>
+      <strong>Objetivos y Funciones:</strong> construir los especímenes y
+      modelos detallados del software antes y durante la codificación.
+    </p>
+    <div class="contenedor-tabla">
+      <table class="tabla-datos">
+        <thead><tr><th>Bloque</th><th>Especificación física en PETPULSE</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Datos</strong></td>
+              <td>Esquema físico normalizado en Supabase (3FN): <code>USUARIOS</code>, <code>MASCOTAS</code>, <code>SESIONES</code>, <code>EVENTO_SALUD</code>, <code>MENSAJES_CHAT</code>, más las tablas de IA (<code>ai_conversations</code>, <code>ai_messages</code>), con reglas <code>ON DELETE CASCADE</code>.</td></tr>
+          <tr><td><strong>Procesos</strong></td>
+              <td>DFD de implantación derivado del DFD Nivel 1 (6 procesos esenciales) especificando qué corre en el cliente React y qué en el backend Next.js (ej. <code>ON-LINE: Identificar raza con IA</code>).</td></tr>
+          <tr><td><strong>Interfaces</strong></td>
+              <td>Mockups de alta fidelidad en Figma para las tres versiones (Desktop/Tablet/Mobile), aplicando el sistema de diseño oficial del proyecto (paleta Verde Salvia / Coral Suave, tipografía Poppins + Inter, regla 60-30-10).</td></tr>
+          <tr><td><strong>Red/Ubicación</strong></td>
+              <td>Diagrama de despliegue: cliente (navegador) ↔ backend Next.js ↔ Supabase (Postgres + Storage) ↔ APIs externas (Gemini, Google Maps).</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      <strong>Técnicas y Herramientas Utilizadas:</strong> herramientas de
+      prototipado UI (Figma), diagramas de secuencia para los flujos
+      principales (registro, agendamiento, chat de IA).
+    </p>
+  </div>
+
+  <div class="tarjeta" id="catalogo">
+    <h3><span class="numero-seccion">6</span> Catálogo de Técnicas y Herramientas de Apoyo al Diseño</h3>
+    <div class="contenedor-tabla">
+      <table class="tabla-datos">
+        <thead><tr><th>Fase de Diseño</th><th>Técnica / Herramienta Utilizada</th><th>Propósito Específico en PETPULSE</th><th>Evidencia en el Blog</th></tr></thead>
+        <tbody>
+          <tr><td>Diseño de Datos</td>
+              <td>Supabase (Postgres) — Table Editor / SQL Editor</td>
+              <td>Diseño del esquema físico de la base de datos y sus relaciones en 3FN.</td>
+              <td><a href="investigacion.html#fase-2">Ver Figura 1 — DER (Investigación y Modelado)</a></td></tr>
+          <tr><td>Diseño de Procesos</td>
+              <td>DFD de implantación</td>
+              <td>Especificar qué procesos corren on-line en el cliente vs. en el backend.</td>
+              <td><em>Pendiente — agregar diagrama de implantación exportado.</em></td></tr>
+          <tr><td>Diseño de Interfaces</td>
+              <td>Figma</td>
+              <td>Diseñar la experiencia e interfaz de usuario (UI/UX) por breakpoint.</td>
+              <td><a href="https://www.figma.com/design/42hgMDQejacP3aZLsyM6Ju/PETPULSE?node-id=450-3684" target="_blank" rel="noopener">Ver prototipo en Figma</a></td></tr>
+          <tr><td>Control y Prueba</td>
+              <td>Git &amp; GitHub / Postman</td>
+              <td>Control de versiones por rama (<code>feature/multimedia-*</code>, <code>feature/SInformacion-*</code>) y validación de endpoints.</td>
+              <td><em>Pendiente — agregar enlace al repositorio y capturas de pruebas HTTP.</em></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+ 
+  </div>
+
+</div>
+
+<footer class="pie-pagina">
+  <div class="contenido-pie">
+    <div class="participantes-pie">
+      Participantes: Luis Jiménez, Carlos Marval, Kimberly Zapata
+    </div>
+    <div class="unidad-pie">
+      Unidad Curricular: Sistemas de Información 1 — UNET
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

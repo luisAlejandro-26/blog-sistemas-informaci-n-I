@@ -19,6 +19,7 @@
   <a href="glosario.html">Glosario</a>
   <a href="blog.html">Blog</a>
   <a href="investigacion.html" class="activo">Investigación y Modelado</a>
+  <a href="unidad3.html">III Unidad</a>
 </nav>
 
 <div class="contenido-pagina">
@@ -65,18 +66,17 @@
     <h4>Stack tecnológico y arquitectura</h4>
     <div class="etiquetas-tech">
       <span class="etiqueta-tech">React (SPA)</span>
-      <span class="etiqueta-tech">Node.js (API REST)</span>
-      <span class="etiqueta-tech">Oracle Database (3FN)</span>
-      <span class="etiqueta-tech">AWS S3</span>
+      <span class="etiqueta-tech">Next.js (API REST)</span>
+      <span class="etiqueta-tech">Supabase (3FN)</span>
       <span class="etiqueta-tech">Google Gemini API</span>
       <span class="etiqueta-tech">Google Maps API</span>
     </div>
     <p>
       Patrón de arquitectura: <strong>Cliente/Servidor multicapas</strong>
-      distribuido en la nube. El frontend React consume la API REST de Node.js;
-      la persistencia reside en Oracle; los binarios e imágenes de mascotas se
-      almacenan en AWS S3; la inferencia de IA y visión por computadora se
-      delega a Google Gemini.
+      distribuido en la nube. El frontend React consume la API REST de Next.js;
+      la persistencia reside en Supabase (Postgres); los binarios e imágenes de
+      mascotas se almacenan en Supabase Storage; la inferencia de IA y visión
+      por computadora se delega a Google Gemini.
     </p>
   </div>
 
@@ -272,7 +272,7 @@
     <h5>Requerimientos no funcionales</h5>
     <ul>
       <li>Tiempo de carga inferior a 3 segundos.</li>
-      <li>Contraseñas y datos sensibles cifrados en Oracle Database.</li>
+      <li>Contraseñas y datos sensibles cifrados en Supabase.</li>
       <li>Interfaz responsive para dispositivos móviles.</li>
       <li>Integridad referencial con <code>ON DELETE CASCADE</code>.</li>
       <li>Consumo controlado de APIs externas (Gemini, Maps) dentro de cuotas gratuitas.</li>
@@ -282,8 +282,8 @@
     <p>
       En esta etapa, PETPULSE se enfoca en <strong>dueños de mascotas</strong>.
       La arquitectura permite escalar hacia un módulo para clínicas veterinarias
-      en versiones futuras. Restricciones tecnológicas: React, Node.js, Oracle
-      Database, AWS S3, Google Gemini y Google Maps API.
+      en versiones futuras. Restricciones tecnológicas: React, Next.js,
+      Supabase, Google Gemini y Google Maps API.
     </p>
 
     <div class="caja-nota">
@@ -305,14 +305,15 @@
 
     <h4>A. Modelado de Datos — Diagrama Entidad-Relación (DER)</h4>
     <p>
-      Desarrollado en Oracle SQL Developer con notación de
-      <strong>Ingeniería de la Información (Pata de Gallo)</strong>.
+      Desarrollado con notación de
+      <strong>Ingeniería de la Información (Pata de Gallo)</strong> e
+      implementado sobre <strong>Supabase (PostgreSQL)</strong>.
       Normalización en <strong>3FN</strong> con reglas
       <code>ON DELETE CASCADE</code>.
     </p>
     <div class="contenedor-imagen">
       <img src="modelo_der_petpilse.jpeg" alt="Diagrama Entidad-Relación de PETPULSE">
-      <p class="pie-imagen">Figura 1 — DER del sistema PETPULSE (Oracle SQL Developer)</p>
+      <p class="pie-imagen">Figura 1 — DER del sistema PETPULSE (Supabase / PostgreSQL)</p>
     </div>
 
     <div class="contenedor-tabla">
@@ -416,17 +417,17 @@
           <tr><td><strong>Cliente</strong> (React SPA)</td>
               <td>Presentación, entrada de datos, visualización.</td>
               <td>HTTPS/JSON hacia Servidor PetPulse</td></tr>
-          <tr><td><strong>Servidor PetPulse</strong> (Node.js)</td>
+          <tr><td><strong>Servidor PetPulse</strong> (Next.js)</td>
               <td>Lógica de procesos 1.0–6.0, autenticación, orquestación.</td>
-              <td>SQL/Middleware ↔ Oracle; HTTPS ↔ Gemini y Maps</td></tr>
-          <tr><td><strong>Servidor de Datos</strong> (Oracle)</td>
+              <td>SQL/Middleware ↔ Supabase; HTTPS ↔ Gemini y Maps</td></tr>
+          <tr><td><strong>Servidor de Datos</strong> (Supabase)</td>
               <td>Persistencia de D1–D5 y tablas del DER.</td>
-              <td>SQL nativo / conexión pooled</td></tr>
+              <td>SQL nativo (PostgreSQL) / conexión pooled</td></tr>
           <tr><td><strong>Cloud Externo</strong> (Gemini + Maps)</td>
               <td>Visión por computadora, inferencia y geolocalización de clínicas.</td>
               <td>HTTPS — Imagen/Prompt → Raza/Recomendaciones; Coordenadas → Clínicas</td></tr>
-          <tr><td><strong>AWS S3</strong></td>
-              <td>Almacenamiento de imágenes y binarios de mascotas.</td>
+          <tr><td><strong>Supabase Storage</strong></td>
+              <td>Almacenamiento de imágenes y binarios de mascotas (bucket <code>chat-images</code>).</td>
               <td>HTTPS — Upload/Download de objetos</td></tr>
         </tbody>
       </table>
@@ -595,8 +596,8 @@
         <div class="etiqueta-iteracion">Iteración 3</div>
         <h5>Ingeniería de la información completa y sistema final</h5>
         <ul>
-          <li>DER definitivo en Oracle (3FN) y API REST funcional.</li>
-          <li>Integración de Gemini, Google Maps y AWS S3.</li>
+          <li>DER definitivo en Supabase (3FN) y API REST funcional.</li>
+          <li>Integración de Gemini, Google Maps y Supabase Storage.</li>
           <li>Pruebas de integración, corrección de errores y optimización.</li>
           <li>Entrega del sistema final listo para uso.</li>
         </ul>
