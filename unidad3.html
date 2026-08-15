@@ -163,9 +163,15 @@
         dueño, veterinario y carnet físico, sin ningún nodo de Red que los
         respalde.</li>
       <li><strong>Técnicas y Herramientas Utilizadas:</strong> entrevistas,
-        observación directa, diagramas de causa-efecto sobre los hallazgos
-        de PIECES.</li>
+        observación directa, diagrama de flujo de datos (DFD) del estado
+        actual (proceso manual con carnet físico), diagramas de causa-efecto
+        sobre los hallazgos de PIECES.</li>
     </ul>
+
+    <div class="contenedor-imagen">
+      <img src="diagrama_antes_de_petpulse.png" alt="DFD del estado actual — proceso manual con carnet físico, antes de PETPULSE">
+      <p class="pie-imagen">Figura 3.1 — DFD del estado actual: control veterinario con carnet físico (antes de PETPULSE)</p>
+    </div>
 
     <h4>C. Fase de Definición (Especificación de Requerimientos)</h4>
     <ul>
@@ -287,12 +293,35 @@
     <p>
       <strong>Técnicas y Herramientas Utilizadas:</strong> herramientas de
       prototipado UI (Figma), diagramas de secuencia (PlantUML) para los
-      flujos principales (registro, agendamiento, chat de IA).
+      flujos principales (registro, agendamiento, chat de IA), y acceso a
+      datos mediante el cliente oficial <code>@supabase/supabase-js</code>
+      (consultas nativas de Supabase, sin ORM intermedio), incluyendo
+      Supabase Storage para las imágenes (bucket de chat y campo
+      <code>pet_image_url</code> en la tabla de mascotas).
     </p>
 
     <div class="contenedor-imagen">
       <img src="diagrama_secuencia_identificar_raza.png" alt="Diagrama de secuencia — Identificar raza con IA">
       <p class="pie-imagen">Figura 4 — Diagrama de secuencia: Identificar raza con IA (PlantUML)</p>
+    </div>
+
+    <h4>Pruebas de endpoints (control y validación)</h4>
+    <p>
+      Validación funcional de la API REST con <strong>Thunder Client</strong>
+      (cliente REST integrado a VS Code, equivalente a Postman), sobre el
+      backend Next.js corriendo en local.
+    </p>
+    <div class="contenedor-imagen">
+      <img src="thunderclient_register.png" alt="Prueba del endpoint POST /api/auth/register con Thunder Client">
+      <p class="pie-imagen">Figura 5 — Prueba de <code>POST /api/auth/register</code> (201 Created) — Thunder Client</p>
+    </div>
+    <div class="contenedor-imagen">
+      <img src="thunderclient_login.png" alt="Prueba del endpoint POST /api/auth/login con Thunder Client">
+      <p class="pie-imagen">Figura 6 — Prueba de <code>POST /api/auth/login</code> (200 OK) — Thunder Client</p>
+    </div>
+    <div class="contenedor-imagen">
+      <img src="thunderclient_ia_chat.png" alt="Prueba del endpoint POST /api/ia/chat con Thunder Client">
+      <p class="pie-imagen">Figura 7 — Prueba de <code>POST /api/ia/chat</code> (200 OK) — Thunder Client</p>
     </div>
   </div>
 
@@ -315,9 +344,9 @@
               <td>Diseñar la experiencia e interfaz de usuario (UI/UX) por breakpoint.</td>
               <td><a href="https://www.figma.com/design/42hgMDQejacP3aZLsyM6Ju/PETPULSE?node-id=450-3684" target="_blank" rel="noopener">Ver prototipo en Figma</a></td></tr>
           <tr><td>Control y Prueba</td>
-              <td>Git &amp; GitHub / Postman</td>
-              <td>Control de versiones por rama (<code>feature/multimedia-*</code>, <code>feature/SInformacion-*</code>) y validación de endpoints.</td>
-              <td><a href="https://github.com/luisAlejandro-26/petpulse" target="_blank" rel="noopener">Ver repositorio en GitHub</a> — <em>pendiente agregar capturas de pruebas HTTP.</em></td></tr>
+              <td>Thunder Client (VS Code) / Git &amp; GitHub</td>
+              <td>Control de versiones por rama (<code>feature/multimedia-*</code>, <code>feature/SInformacion-*</code>) y validación funcional de endpoints (auth, IA).</td>
+              <td><a href="https://github.com/luisAlejandro-26/petpulse" target="_blank" rel="noopener">Ver repositorio en GitHub</a> — <a href="#fases-diseno">Figuras 5, 6 y 7 — pruebas de endpoints (más arriba)</a></td></tr>
         </tbody>
       </table>
     </div>
